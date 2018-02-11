@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+<h1>The GTTMAnalyser Module:</h1>
+
+<p>The GTTMAnalyser module is designed to perform GTTM preference rule analyses upon a given set of musical inputs. The aim of the module is to provide a method of quantifying how preferable a given musical input is according to the form of analysis. For example, the GroupingStructureAnalyser provides methods to assess how preferable a given AttackEvent is to land on the boundary of a group. At the present time the Music Analyser Module only provides partial implementation of the GTTM preference rules. 
+</p>
+
+<h2>GroupingStructureAnalyser:</h2>
+
+<p>At the present the GroupingStructureAnalyser only provides methods to analyse, given a set of four AttackEvent inputs, how well the second AttackEvent constitutes an AttackEvent at the boundary of a group. This is done by implementing rules according to GPR2 and GRR3. GPR4 is also implemented, as it is in effect a rule that rates a set of musical inputs based on how well they fit GPR2 and GPR3.
+</p>
+<p>In the future, rules on parallelism (GPR 6), symmetry (GPR 5), and Time-Span and Prolongational Stability (GPR 7) ought to be implemented to provide more refined analysis.
+</p>
+<p>Provides implementation for the following aspects of grouping structure analysis:
+</p>
+<p>All methods take an input of a list of Event objects, which must contain exactly four AttackEvent objects (n1, n2, n3, n4).
+</p>
+<p>All methods provide a rating between 0.0 and 1.0 to indicate how preferable the note n2 constitutes a boundary between n1-n2 and n3-n4. A rating of 0.0 is considered negative and indicates negative preference (i.e. that the note n2 is not the prime candidate for forming a boundary given the set of four AttackEvents). A rating of 0.5 indicates that there is no preference for n2 forming a boundary over any of the other AttackEvents. A rating greater than 0.5  is considered positive and indicates a preference for n2 to form a boundary, with a rating towards 1.0 indicating a very strong preference.
+</p>
+<p>GPR 2a: Assessment based on how great the interval of time is between the end of n2 and the beginning of n3, compared to n1 to n2, and n3 to n4. A relatively higher length returns a positive rating. A relatively lower length returns a negative rating. (This only takes account of rests at the moment, and does not yet consider the effect of slurs as it should do).
+</p><p>
+GPR 2b: Assessment based on how great the interval of time is between the beginning of n2 and the beginning of n3, compared to n1 to n2, and n3 to n4. A relatively higher length returns a positive rating. A relatively lower length returns a negative rating.
+</p><p>
+GPR 3a: Calculates the intervallic distance between n2 and n3, and compares it to the intervallic distance between n1-n2 and n3-n4. A relatively greater distance returns a positive rating. A relatively smaller distance returns a negative rating.
+</p><p>
+GPR 3b: Registers whether the n2-n3 signify a change in dynamics. If it does, and n1-n2 and n3-n4 do not signify a change in dynamics, then return a positive rating. If there's no change in dynamics, return 0.5. If n2-n3 does not exclusively represent a change in dynamics, return 0.0.
+</p><p>
+GPR 3c: Registers whether n2-n3 represent a change in articulation and n1-n2 and n3-n4 don't.(so far, the only articulation available is slur and staccatto). Returns a positive rating if so.
+</p><p>
+GPR3d: Registers whether n2-n3 represent a change in duration of note and n1-n2 and n3-n4 don't. Returns a positive rating if so. If there's no change in duration at all, return 0.5. If there is a change in duration between other notes, return 0.0.
+</p><p>
+GPR2: Performs analysis of n1,n2,n3,n4 using GPR2a and GPR2b methods, and returns their average rating.
+</p><p>
+GPR3: Performs analysis of n1,n2,n3,n4 using GPR3a,b,c,d, and returns their average rating.
+</p><p>
+GPR4: Performs analysis according to GPR2 and GPR3, and returns a rating based on an adjusted average of the two results (giving preference to GPR2).
+</p>
+<br />
+<h2>MetricalStructureAnalyser:</h2>
+<p>
+This class provides analysis of metrical preference rules. Currently, only MPR 5 is implemented (and only partially: MPR5 e and f are not yet implemented). This class is used to assess how preferable a given AttackEvent is for landing on a strong beat, given a context of Event objects.
+</p><p>
+All methods provide a rating between 0.0 and 1.0 to indicate how preferable the nominated AttackEvent constitutes an event on a strong beat of the metrical structure. A rating of 0.0 is considered negative and indicates negative preference (i.e. that the nominated AttackEvent is not a candidate for landing on a strong beat). A rating of 0.5 indicates that there is no preference for the nominated event for landing on a strong or weak beat. A rating greater than 0.5  is considered positive and indicates a preference for the nominated event to land on a strong beat, with a rating towards 1.0 indicating a very strong preference.
+</p><p>
+At present, the following methods are implemented. These are all implementations of sub analyses of MPR 5, or an implementation of MPR 5 itself:
+</p><p>
+MPR 5a: If the nominated event is a relatively long pitch event, return a positive rating. If it is of the mean length, return 0.5. If it is a relatively short pitch event, return a negative rating.
+</p><p>
+MPR 5b: Assesses whether the given AttackEvent is the inception of a dynamic period, and if so works out how long that dynamic period is. Calculates the mean length of dynamic periods, and returns a postive rating if the AttackEvent is relatively long. If it is relatively short or it is not an inception of a dynamic, 0.0 is returned. Return 0.5 if it is of mean length.
+</p><p>
+MPR 5c: Assesses whether the given AttackEvent is the inception of a slur, and if so works out how long that slur is. Calculates the mean length of slurs, and returns a postive rating if the AttackEvent is relatively long. If it is relatively short or it is not an inception of a slur, 0.0 is returned. Return 0.5 if it is of mean length.
+</p><p>
+MPR 5d: Assesses whether the given AttackEvent is the inception of a pattern of articulation, and if so works out how long that pattern of articulation is. Calculates the mean length of patterns of articulation, and returns a postive rating if the AttackEvent is relatively long. If it is relatively short or it is not an inception of a pattern of articulation, 0.0 is returned. Return 0.5 if it is of mean length. (Note, this implementation takes the same form of MPR5c, and includes consideration of slurs, as well as other forms of articulation).
+</p>
+
+<br />
+<h2>TimeSpanReductionAnalyser:</h2>
+<p>
+At present, this class provides analyses of two Beat objects which must each be associated with an AttackEvent. It provides partial implementation of the time-span reduction preference rules, at present only incorporating TSPR2 and TSPR3a.
+</p><p>
+It is not yet suitable for analysing a piece of music, but rather is only suitable for aiding the generation of music where the Time Span Reduction analysis has already been provided. There is lots of scope to extend this class to provide analysis of inputs of a list of contiguous Event objects (which would represent a time-span of the music). Such an input could be assessed using the currently implemented rules to assess which AttackEvent within the list of Event objects presents the most important AttackEvent withint the time span.
+</p><p>
+A rating between 0.0 and 1.0 is returned from the given methods indicating how well a propsoed parent Beat represents a hierarchically more significant event than a proposed child Beat. A rating of 1.0 indicates clear hierarchical predominance of the parent over the child. A rating of 0.5 indicates no clear preference. A rating towards 0.0 indicates that the child is hierarchically more significant than the parent.
+</p><p>
+The following rules have been implemented:
+</p><p>
+Consonance Analysis: Provides a rating of how consonant the given child is with the given parent. A high consonance returns a high rating (indicating they are closely related). A low consonance returns a low rating (indiciating they are not closely related in the time-span reduction hierarchy).
+</p><p>
+Tonic relation analysis: Provides a rating of how closely related a given AttackEvent is to the local tonic (a Scale object is provided to aid the analysis). A high rating indicates high relation, and a low rating indicates a low rating.
+</p><p>
+Tonic relation comparison: Compares the parent and the child using the tonic relation analysis to assess which one is most closely related to the tonic. If the parent is more closely related, a high rating is return. If the child is more closely related, a low rating is return.
+</p><p>
+
+TSPR2: Makes use of the consonance analysis and tonic relation analysis to provide an assessment as to whether the child or parent is more hierarchically significant. If the parent represents higher significance, then a high rating is returned. If the child represents a higher significance, then a low rating is returned.
+</p><p>
+TSPR3a: Assesses whether the parent has a higher melodic pitch to the child, and returns a positive rating if so. If the child has a higher melodic pitch, a negative rating is returned.
+</p>
+
+<h2>ProlongationalReductionAnalyser:</h2>
+<p>
+The prolongation reduction analyser presently only implements PRPR3, but makes extensive use of the stability rules for prolongational connections 1, 2, and 3. Again, this class is not yet fully suited to performing analysis on a piece of music, but rather for use in generating music as it presumes a predefined grammatical analysis. However, it provides more potential for such analysis at this point than the TimeSpanReductionAnalyser does due to the top down way in which prolongational analysis takes place. More rules will need to be implemented before it can be effective an analysis module.
+</p><p>
+Rating are provided according to how stable a given child Beat forms a branch from the given parent Beat. High stability is given a rating of >0.5. Negative stability is given a rating of >0.5. No preference is indicated with a rating of 0.5.
+</p><p>
+The following methods have been implemented:
+</p><p>
+Assessment of branching type: Analyses the AttackEvents of the parent and child Beat objects, and assesses what kind of branch would be formed between them (i.e. a strong prolongation, weak prolongation, or a progression).
+</p><p>
+Assessment of Branching stability: Using the branching type assessment, a judgement of stability is made as follows: if child forms a strong prolongation right branch off of the parent, then a high rating is returned. If the child forms a progression left branch off of the parent, a high rating is returned. If the child forms a progression right branch, then a low rating is returned. If the child forms a strong prolongation left branch, then a low rating is returned. If the branch is a weak prolongation, a rating of 0.5 is returned.
+</p><p>
+Assessment of pitch stability: Assesses to see if the child and parent form part of the same diatonic collection. If so, then a strong rating is returned. If not, a low rating is returned.
+</p><p>
+Assessment of Melodic Condition A: If the interval between the two events is small or an octave apart, then a strong rating is returned. If the interval is great, a weak rating is returned.
+</p><p>
+Assessment of Melodic Condition B: If the child froms a right branch from the parent and the melodic progression is ascending, return a high rating. If the child froms a left branch from the parent and the melodic progression is descending, return a high rating. If they are level in melodic progression, return 0.5. Else return a low rating.
+</p>
+<br />
+<h2>RatingsGenerator:</h2>
+
+<h3>Inputs:</h3>
+
+<ul>
+<li>A GrammarContainer object</li>
+<li>An EventStream object</li>
+</ul>
+
+<h3>Purpose:</h3>
+
+<p>The RatingsGenerator class is a singleton class that is used to provide ratings to describe how well an EventStream object fits a given the grammar structure encapsulated by the GrammarContainer object. It provides a series of methods to analyse separate aspects of the grammar. 
+</p>
+<p>Each method provides a rating between 0.0 and 1.0. A rating of 0.0 indicates that the EventStream entirely violates the grammatical structure. A rating between 0.0 and 0.5 indicates that the EventStream violates the grammatical structure more than it corroborates with it. A rating of 0.5 indicates that the EventStream does not violate or corroborate with the structure. A rating between 0.5 and 1.0 indicates that the EventStream largely corroborates with the grammatical structure. A rating of 1.0 indicates that the EventStream wholly corroborates with the grammatical structure.
+</p>
+<h3>Undefined Behaviour:</h3>
+
+<p>EventStream objects must match the metrical structure of a given GrammarContainer structure. Submitting EventStream objects which do not have a matching metrical structure (i.e. it is longer or shorter than the GrammarContainer's beat structure) has undefined behaviour within the program. Future developers may want to consider whether an EventStream that doesn't have a matching metrical structure represents a complete violation of the GrammarContainer or not and define behaviour accordingly.
+</p>
+<h3>Methods:</h3>
+<ol>
+<li>obtainRating():
+
+<p>Generates a rating based on the average of the sum of all the separate ratings.
+</p></li>
+
+<li>obtainMetricalRating():
+
+<p>Generates a rating to describe how well the given EventStream fits the metrical structure constraints based on MPR5a and MPR5e grammar rules. 
+</p><ol>
+<li>AttackEvents of relatively long duration landing on strong beats will increase the rating. Vice versa for AttackEvents of relatively short duration. 
+</li>
+<li>AttackEvents of relatively long duration landing on weak beats will decrease the rating. Vice versa for AttackEvents of relatively short duration.
+</li>
+<li>AttackEvents of relatively long duration which are associated with relatively high level Time Span Reduction branches will increase the rating. Vice versa for AttackEvents of relatively short duration.
+</li>
+<li>AttackEvents of relatively long duration which are associated with relatively low level Time Span Reduction branches will decrease the rating. Vice versa for AttackEvents of relatively short duration.
+</li></ol></li><br />
+<li>obtainTimeSpanReductionRating()
+
+<p>Generates a rating to describe how well the given EventStream object fits the GrammaticalContainer structure using TSPR2 and TSPR3 analysis rules to assess how well each child branch relates to its parent. 
+</p>
+<p>If the GrammaticalContainer contains one or more CadencedTimeSpanReductionBranch branches, then the EventStream is checked to ensure that each denoted cadence beats forms a cadence. If not cadence is formed, then the rating is descreased, otherwise it is increased. 
+</p>
+</li>
+<li>obtainProlongationalReductionRating()
+
+<p>Generates a rating to describe how well the given EventStream object fits the GrammaticalContainer structure using the PRPR3 analysis rule.
+</p>
+<p>Each rating is adjusted according to the level of the branch. A low rating for a branch at a low position will be increased. A high rating for a branch at the low level of the hierarchy will be decreased.
+</p>
+<p>Each branch's associated AttackEvent is checked to ensure that it fits the branching type constraints (e.g. that a branch of type STRONG_PROLONGATION shares the same AttackEvent pitch as its parent). If it does not, the rating is decreased accordingly.
+</p></li>
+<li>obtainGroupingStructureRating()
+
+<p>Generates a rating to describe how well the given EventStream fits the grouping structure constraints of the grammar structure. This is assessed by using GPR2, GPR3A and GPR3D constraints. (GPR3B and GPR3C are not taken into consideration at this moment due to the fact that these rely on assessing changes in dynamics and articulation which are not yet implemented throughout the music generator.)
+</p>
+<p>Pitch beats which do not form a boundary of a group are checked to ensure that they do not have a preferable rating for forming a group boundary. Ratings are reduced if a pitch beat that is not at a boundary position returns a preferable rating for forming a boundary.
+</p></li>
+<li>obtainCadenceRating()
+
+<p>Generates a rating to describe how well the given EventStream fits the grammatical structure's cadence constraints. If beats marked as cadence notes do not form a cadence, then the rating is reduced accordingly.
+</p>
+</li>
+<li>createEventMap()
+<p>
+Generates a map of Beat objects against Event objects based on the grammar structure and EventStream. 
+</p>
+</li>
+</ol>
+
+
+<h1>Future plans:</h1>
+<p>
+At the present stage the analyser modules are only partially implemented. In the future, more of the GTTM rules preference should be incorporated into the modules in order to provide more refined music generation and music analysis. Well formedness rules should also be implemented in some way (these are present in the current program, but are mainly implicit within the GrammarContainer classes, or else scattered it).
+</p><p>
+Further work should be done to provide analysis on as yet unprocessed musical fragments, which may then be used by the music generator. This would also be useful for users who only wish to have a GTTM analysis of a piece of music performed without initiating the music generator. To this end, another aspect of the module should be introduced that unifies the current classes in order to provide an entire GTTM analysis of a piece of work. 
+</p>
+
+</body>
+</html>
+

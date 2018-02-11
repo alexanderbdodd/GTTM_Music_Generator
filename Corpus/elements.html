@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Elements Package</h1>
+<p>The Elements package contains classes that encapsulate different elements of musical phrase.</p>
+
+<p>Here is a class diagram representing the structure of the package:</p>
+<img src="diagrams/Elements_Package.png"></img>
+<br />
+
+<h2>Classes, Interfaces, and Enums</h2>
+
+<ol>
+<li>
+<b>Event Interface</b>
+<p>The Event interface is implemented by classes which represent 'events' as articulated within GTTM theory. It provides an interface for a method 'getDurationEnum()' which returns
+ the durational length of the event. The durational length is measured in the lowest level of beats in the metrical structure.</p>
+</li>
+<li>
+<b>AttackEvent class</b>
+<p>The AttackEvent class implements the Event interface and is used to represent the instantiation of a pitch as well as encapsulating the durational value of the pitch. </p>
+</li>
+<li>
+<b>RestEvent class</b>
+<p>The RestEvent class implements the Event interface and is used to represent the instantiation of a period of rest within the music, and further encapsulates the duration of that rest.</p>
+</li>
+<li>
+<b>EventStream class</b>
+<p>The EventStream class is used to encapsulate a stream of Event objects. It is used to represent a piece of music.</p>
+</li>
+<li>
+<b>AttackEventChord class</b>
+<p>The AttackEventChord class extends the AttackEvent class to encapsulate the instantiation of a chord of pitches, as well as its duration.</p>
+</li>
+<li>
+<b>KeyLetterEnum enum-type </b>
+<p>The KeyLetterEnum enum-type class is used to constrain the range of letters that can be associated with a Key class object. It is used to represent keys within the Western tonal tradition.</p>
+</li>
+<li>
+<b>KeyPositionEnum enum-type</b>
+<p>The KeyPositionEnum enum-type class is used to constrain the range of positions available for use in the music generator. It matches the position available on a keyboard and ranges from 1-8.</p>
+</li>
+<li>
+<b>Key class</b>
+<p>The Key class is used to encapsulate details about a pitch at the point of instantiation. It defines the pitch frequency using KeyLetterEnum and KeyPositionEnum enum-type classes. </p>
+</li>
+<li>
+<b>Scale Class</b>
+<p>The Scale class is used to encapsulate a Western tonal tradition type scale. It defines a scale as a sequence of KeyLetterEnums</p>
+</li>
+<li>
+<b>ConcreteScale class</b>
+<p>The ConcreteScale class is used to encapsulate a Western tonal tradition type scale, and includes definite pitch positions for members of the scale. 
+It defines a scale as a sequence of Key objects</p>
+</li>
+<li>
+<b>DynamicsEnum enum-type</b>
+<p>An enum-type that is used to describe different dynamic values for AttackEvent objects.</p>
+</li>
+<li>
+<b>ArticulationEnum enum-type</b>
+<p>An enum-type that is used to describe different articulation values for AttackEvent objects.</p>
+</li>
+
+</ol>
+
+
+</body>
+</html>

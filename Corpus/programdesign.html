@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Program Design and Implementation</h1>
+
+<p>This document gives and overview of the design and implementation of the Music Generator program.</p>
+<hr />
+
+<h1>Program Aims and Requirements</h1>
+<p>The goal of the Music Generator program has been to generate music through the use of <a href="gttmrules.html">GTTM grammar rules</a>. 
+In this document, an overview of the program requirements and motivations will be given.</p>
+
+
+
+<h2>Motivation</h2>
+<p>The stated aim of the program is to produce music based on an implementation of the GTTM grammar rules. 
+The authors of the GTTM state that 'each rule of musical grammar designed to express a generalisation about the organization that the listener attributes to the music he hears.' 
+In constructing their theory of grammar, the authors state that 'fundamental concepts of musical structure must involve such factors as rhythmic and pitch organisation, dynamic and timbral differentiation, and motivic-thematic processes'
+ and that their theory of grammar is designed to 'specify a structural description for any tonal piece'. The aim of my project has been to explore how far these structural descriptions can be used to 
+ generate tonally sound musical phrases.</p>
+ 
+ <hr />
+ 
+<h2>Aims and Requirements</h2>
+<p>In designing the program, I produced a requirements document which can be accessed <a href="documents/programrequirements.pdf">here</a>. </p>
+<p>I also submitted a proposed program structure to my tutor as part of the early deliverable, which can be viewed <a href="documents/proposedstructure.pdf">here.</a></p>
+<p>A document describing the motivations and intentions for the program can be viewed <a href="documents/programaims.pdf">here.</a></p>
+
+<hr />
+
+<h1>Program Implementation</h1>
+
+<h2>Packages</h2>
+
+<p>In this section details concerning the program implementation will be described. The program consists of several modules which are used as part of the music generation process.</p>
+<p>The key modules are:</p>
+<ol>
+<li><b><a href="gttmanalyser.html">GTTM_Analyser Package</a></b><p>This module provides an implementation of a ratings system based on the <a href="prulesimplementation.html">GTTM preference rules.</a></p>
+</li>
+<li><b><a href="gttmgrammarimplementation.html">Grammar_Elements Package</a></b><p>Provides classes for implementing GTTM style grammar structures.</p></li>
+<li><b><a href="phrasegenerator.html">Phrase_Generator Package</a></b><p>Provides classes for use in <a href="musicgenerationprocess.html">constructing musical phrase solutions to grammar structures.</a></p></li>
+<li><b><a href="grammarconstructor.html">Grammar_Generator Package</a></b><p>Provides classes for constructing GTTM style grammar structures.</p></li>
+<li><b><a href="elements.html">Elements Package</a></b><p>Provides classes that encapsulate details concerning musical elements such as notes and rests.</p></li>
+<li><b><a href="grammarillustrator.html">GrammarIllustrator Package</a></b><p>Provides classes that represent GrammarContainer objects visually according to GTTM standards.</p></li>
+<li><b><a href="player.html">Player Package</a></b><p>This is an adaptor package for the JMusic library. Provides classes to play and save the musical solutions produced by the system.</p></li>
+<li><b><a href="manipulators.html">Manipulators Package</a></b><p>This package provides classes that allow manipulation and analysis of musical elements according to standard music theory practices.</p></li>
+</ol>
+
+<h2>Rules Weighting System</h2>
+<p>The program has a weighting system for use in generating ratings. <a href="weightingssystem.html">The details can be found here.</a></p>
+
+<hr />
+
+<h2>Program Processes Explanation</h2>
+
+<p>This section provides links to pages giving explanations of how the various parts of the program work.</p>
+
+<p><a href="musicgenerationprocess.html">How musical phrases are constructed.</a></b>
+<p><a href="grammarconstructor.html">How GTTM grammars are constructed</a></p>
+
+<hr />
+
+<h2>Design Choices and Justifications</h2>
+
+<p>In this section I will provide an overview of the design choices that have been made in implementing the program and justify why they have been made in that way.</p>
+
+<ol>
+<li>
+<b>Use of enum-type classes</b>
+<p>Enum-type classes have been used to constrain the range of possible choices for musical element such as pitch position and pitch articulation. An alternative way of 
+implementing this could have been to have static int field variables at the top of relevant classes which would act as aliases for these different musical elements, but I felt 
+that this made the job of constraining input into the system more difficult and could potentially lead to more errors. It also seems to make more sense to have these variables 
+declared in a relatively independent place rather than within some class as they are used in many different classes throughout the program.</p>
+</li>
+<li>
+<b>Use of third party libraries</b>
+<p>Please see <a href="#3party">below.</a></p>
+</li>
+<li>
+<b>Use of recursion</b>
+<p>In the early stages of the development of the program I opted to make use of random note generation for use in constructing potential pitches and rhythms. 
+However, <a href="documents/programrequirements.pdf">one my stated aims</a> in generating the program has been to minimise the amount of randomness used in generating musical phrases, and thus I refactored the program 
+such that it used recursive methods to run through all the possible pitch positions and durational values.</p>
+</li>
+</ol>
+
+<p></p>
+
+<hr />
+
+<h2 id="3party">Third Party Libraries</h2> 
+
+<p>In developing the system, two external libraries have been incorporated into the program:</p>
+
+<h3>Commons Math: The Apache Commons Mathematics Library</h3>
+<p>The Apache Commons Math library has been implemented for use in generating ratings. It provides several methods for calculating averages which have been helpful in reducing the size of the source code.</p>
+<p>The website for the Apache Commons Mathematics Library can be found <a href="http://commons.apache.org/proper/commons-math/">here</a>.</p>
+
+<h3>JMusic Library</h3>
+<p>The JMusic library has been incorporated into the program because of the many useful methods is provides in generating music. It has been used in particular in the Player module to provide a 
+means of producing a audible representation of the musical solutions produced by the program, and for use in writing these representations out as .midi files. </p>
+<p>The JMusic Library provides many classes (such as the Note class) that could have been incorporated into my main program, reducing the size of my own source code. However, there are several reasons why I have opted to 
+keep the JMusic library separate from the Music Generator program code: </p>
+
+<ol><li><b>Future Flexibility</b><p>The JMusic library is quite an old library, and if it were to become unsupportable in the near future then it would make future development of the Music Generator program more difficult. Thus I deemed it better to keep the two libraries as separate as possible.</p>
+</li>
+<li><b>Future Flexibility 2</b><p>Further to the last point, if future developers wished to change the libraries associated with outputting the sound then this would be easier to change if the source code was kept as separate as possible from the JMusic library.</p></li>
+<li><b>GTTM Strictness2</b><p>Although the JMusic Note class and the Music Generator's AttackEvent class may seem similar in function, the AttackEvent class is designed to always match a series metrical beats, whereas the Note class may not exactly match this. Furthermore, the notion of an AttackEvent
+within GTTM theory does not necessarily have the same meaning as a 'note' does.  </p></li>
+
+</ol>
+
+<hr />
+
+<h3>Problems with the Music Generator Program</h3>
+<p>
+<ol>
+<li><b><u>The Rate of Generation:</u></b>
+
+<p>At present not all grammar objects produced by the GrammarConstructor module finds a solution. This means that in generating a piece of music, the MusicGenerator must often produce multiple different grammar structures until it finds one it can generate a musical solution for. This is problematic if we want to generate music from a specific grammar that has perhaps been constructed by consulting an existing piece of music, as it is likely the music generator will have issues.
+</p><p>
+Music generation most often fails to find a solution when trying to find prolongational candidates which fit cadence restrictions, when testing for branching correctness of the prolongational reduction, and sometimes when finding candidate rhythmic solutions for the pitch solutions.
+</p><p>
+
+<p><b>Possible causes and solutions:</b></p>
+<ul>
+<li>
+<b>Not enough rules:</b>
+
+<p>Implementing more preference rules within the GTTM_Analyser module may provide more potential solutions for a piece of grammar. Rules which could be introduced PRPR 2, PRPR 4.
+</p>
+</li>
+<li><b>Over restrictiveness of constraints:</b>
+
+<p>This is certainly the reason for most failures in music generation. Solutions are rejected if they don't fit the constraints of the analysis rules well enough. This can be adjusted by:
+</p>
+<ol><li>
+reducing the lowest acceptable ratings values in the PitchGenerator module,
+</li>
+<li>Switching off certain tests to reduce the amount of constraints. Indeed, in the current implementation, the test for branching correctness has been switched off as it results in a very dramatic reduction in the probability of the rate of generation. 
+</li><li>
+checks for cadence could be expanded to include different kinds of cadence other than I-V and V-I cadence types.
+</li>
+</li>
+</ol><br />
+<li><b>Adjusting the weightings for different analysis rules within the GTTM-Analyser module classes:</b>
+
+<p>I have found that adjusting these weighting can have a dramatic affect on the rate of generation, but they also have a further impact on the quality of the music. More time will need to be spent to assess how suitable the current weightings are for use in music generation and potential music analysis.
+</p></li>
+<li><b>Over restrictive grammars:
+</b>
+<p>The issue could be further improved by altering the process of grammar construction to allow greater variations in types of grammar. I recommend re-implementing the grammar construction phase to provide more refined grammar generation. I have observed that increasing the span of beats between pitch events often improves the rate of generation as this provides the music generator with greater potential variations in rhythmic solutions.
+</p><p>
+It would be interesting to see how often grammars constructed by analysing existing pieces of music fail to produce a solution, as this would allow us to assess whether the problem lies with poor quality grammars (as opposed to grammars which would be of higher, more accurate quality when generated by analysing existing pieces of music).
+</p>
+<p>Increase number of rhythmic solutions:</p>
+
+<p>This could be done by providing more than one potential metrical solution, and ranking each metrical solution in terms of preference.
+</p>
+</li>
+</ul>
+</li>
+
+
+<li><b><u>Program Hanging</u></b></li>
+<p>The program can appear to hang if it finds too many potential rhythmic or pitch solutions. The hanging happens when it filters through all the different combinations 
+recursively to see if they fit preference rules constraints. In the current implementation of the program, this problem is overcome by restricting the amount of recursion 
+that the program does at this stage, and breaking out of the recursive method when that limit is reached. Recursion restrictions are also put in place in some of the recursive methods 
+of the pitch generator class.</p>
+
+<p>The program also occasionally hangs when generating a grammar structure. This is a bug which I have not yet been able to fix.</p>
+</li>
+
+</ol>
+
+</body>
+</html>

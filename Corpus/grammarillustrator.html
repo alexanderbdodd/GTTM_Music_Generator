@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>GrammarIllustrator Package</h1>
+<p>The GrammarIllustrator package makes use of the Java Swing API to generate visual representations of GTTM grammars.</p>
+
+<h2>How it's used</h2>
+<p>The GrammarIllustrator class extends the JPanel class and can be embedded in Swing applications to visually represent GrammarContainer grammar structures. 
+It follows the diagram standards set out in the Generative Theory of Tonal Music text.
+</p>
+
+<p>When a grammar is printed out, it is displayed in the following way: </p>
+<img src="diagrams/grammar-illustrator-example.png"></img>
+
+<h2>Classes</h2>
+
+<ol>
+<li>
+<b>GrammarIllustrator Class</b>
+<p>Extends JPanel to draw all aspects of the grammar structure.</p>
+</li>
+<li>
+<b>GroupingStructureIllustrator class</b>
+<p>Draws a representation of the grouping structure to a given Graphics2D object at a given position.</p>
+</li>
+<li>
+<b>MetricalIllustrator class</b>
+<p>Draws a representation of the metrical structure to a given Graphics2D object at a given position.</p>
+</li>
+<li>
+<b>ProlongationalIllustrator class</b>
+<p>Draws a representation of the prolongational reduction to a given Graphics2D object at a given position.</p>
+</li>
+<li>
+<b>TimeSpanIllustrator class</b>
+<p>Draws a representation of the time-span reduction to a given Graphics2D object at a given position.</p>
+</li><li>
+<b>IllustratorFrame class</b>
+<p>Extends the JFrame class to create a Swing frame with the GrammarIllustrator JPanel embedded within it.</p>
+</li>
+</ol>
+
+
+
+</body>
+</html>

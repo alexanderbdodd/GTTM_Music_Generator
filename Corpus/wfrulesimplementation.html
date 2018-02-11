@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html>
+
+<head></head>
+<body>
+
+<h1>Implementation of GTTM Well-Formedness Rules</h1>
+
+<p><b>Contents:</b>
+<ul><li><a href="#grules">Grouping Structure Rules</a></li>
+
+<li><a href="#mrules">Metrical Rules</a></li>
+
+<li><a href="#trules">Time-Span Reduction Rules</a></li>
+
+<li><a href="#prules">Prolongational Reduction Rules</a></li></ul></p>
+
+<b><u>This document provides an overview of how the GTTM well-formedness rules are implemented within the program. </u></b> <br /><br />
+
+
+<b>Well-formedness Rules:</b><br />
+
+Well-formedness rules describe structural features of the grammar which must be present, and which must not be violated. It is essential that all aspects of the grammatical analysis follow these rules.
+<br />
+Within the program, the well-formedness rules are either explicitly or implicitly enforced by the program.<br />
+Rules that are implicitly enforced are done so by constraints imposed upon the way grammatical analyses can be represented by the system. E.g., a branch may only be associated with one pitch event because the Branch class only allows one such reference.
+<br />
+Explicitly enforced rules are rules that are explicitly referenced by the system by referring to some method to analyse the well-formedness of a given grammar element. Any violation of that well-formedness results in an exception being thrown, representing the fact that a non-well-formed grammar cannot be meaninfully used for music generation according to the premise of the system.
+<br />
+Here follows a list of the well-formedness rules and how they have been implemented in the system:
+<br />
+<h1>Grouping well-formedness rules:</h1>
+
+<b id="grules"><a href="gttmrules.html#gwfr1">GWFR 1:</a></b> 
+
+<br /><br />
+	<b>Implicit:</b> a contiguous sequence of pitch-events may constitute a group. Groups are made up of a span of metrical beats, which represents the time-span of pitch-events and 	rests.
+<br /><br />
+	<b>Explicit:</b> a method is implemented in the Group class to ensure that all metrical beats are in 		a contiguous order.
+<br />
+<br />
+
+<b><a href="gttmrules.html#gwfr2">GWFR 2:</a></b> <br />
+<br />
+	<b>Implicit:</b> A piece of music can be subsumed under one group by associating the group with 	the whole span of metrical beats of the piece.
+<br /><br />
+<b><a href="gttmrules.html#gwfr3">GWFR 3:</a></b><br />
+<br />
+	<b>Implicit:</b> the class HighLevelGroup extends group and contains a list of all its sub groups.
+<br /><br />
+<b><a href="gttmrules.html#gwfr4">GWFR 4: </a></b><br /><br /> 
+	<b>Implicit:</b> a HighLevelGroup only allows adding of an entire group as a sub group, not parts 	of one.
+<br /><br />
+<b><a href="gttmrules.html#gwfr5">GWFR 5</a></b>
+<br /><br />
+	<b>Explicit:</b> a method is provided which ensures that a HighLevelGroup is not created with less 	than two groups as a subgroup. If less than two groups are given at intiation, then the 	HighLevelGroup would violate GWFR 5 as it is not an exhaustive partition into smaller 	groups.
+<br /><br />
+<h1 id="mrules">Metrical well-formedness rules:</h1>
+
+<b><a href="gttmrules.html#mwfr1">MWFR 1:</a></b> <br /><br />
+	<b>Implicit:</b> a beat is encapsulated by a Beat object, and each Beat object has a metrical 	strength of 1 or greater. Any value greater than one is used to imply a beat at metrical level 	1. E.g., a metrical value of 2 associated with a beat implies a beat present at level 1 and level 	2.
+<br /><br />
+<b><a href="gttmrules.html#mwfr2">MWFR 2:</a></b> <br />
+<br />
+	<b>Implicit:</b> a beat is encapsulated by a Beat object, which is designated a metrical strength of 	1 or greater. Any value greater than 1 implies a beat at all metrical levels up to and including 	that level. E.g. a metrical value of 3 associated with a beat implies a beat present at level 1, 	level 2, and level 3.
+<br /><br />
+<b><a href="gttmrules.html#mwfr3">MWFR 3:</a></b> <br />
+<br />
+	<b>Explicit:</b> a method is used to assess whether the a sequence of metrical beats contained 	within a MetricalContainer fits this constraint.
+<br /><br />
+<b><a href="gttmrules.html#mwfr4">MWFR 4:</a></b> <br />
+<br />
+	<b>Implicit:</b> the musical generator takes it for granted that beats are to be considered to be 	equally spaced apart.
+<br /><br />
+<h1 id="trules">Time Span Reduction well-formedness rules:</h1>
+<br />
+<b><a href="gttmrules.html#tsrwfr1">TSRWFR 1</a></b>: <br /><br />
+	<b>Implicit:</b> time span reduction branches are associated with beats, and those beats that are 	associated with a time-span reduction branch are therefore considered to be on the inception 	of a pitch event.
+<br /><br />
+<b><a href="gttmrules.html#tsrwfr2">TSRWFR 2:</a></b><br /><br />
+	<b>Implicit:</b> time span reduction branches are taken for granted as providing an exhaustive 	analysis of all the pitch events of the music.
+<br /><br />
+<b><a href="gttmrules.html#tsrwfr3">TSRWFR 3:</a></b> <br /><br />
+<b><a href="gttmrules.html#tsrwfr3a">a.)(Ordinary Reduction):</a></b> <br /><br />
+	<b>Implicit:</b> the time-span reduction analysis is taken for granted as providing this analysis
+<br /><br />
+<b><a href="gttmrules.html#tsrwfr3b">b.) (Fusion):</a></b> 
+<br /><br />
+	Not implemented: this is not supported by the music generator yet.
+<br /><br />
+<b><a href="gttmrules.html#tsrwfr3c">c.) (Transformation):</a></b><br /><br />
+	Not implemented: this is not supported by the music generator yet.
+<br /><br />
+<b><a href="gttmrules.html#tsrwfr3d">d.) (Cadential Retention):</a></b> <br /><br />
+	<b>Implicit:</b> this is taken for granted to be the case by the music generator.
+	
+	<br /><br />
+
+<b><a href="gttmrules.html#tsrwfr4">TSRWFR 4:</a></b> <br /> <br />
+	<b>Explicit:</b> the CadencedTimeSpanReductionBranch encapsulates the fact that a cadence 	consists of two pitch events. The music generator ensures analysis of the penult as a 	subordinate of the final.
+<br /><br />
+
+<h1 id="prules">Prolongational Reduction Well-formedness Rules:</h1>
+<br />
+<b><a href="gttmrules.html#prwfr1">PWFR 1:</a></b> <br /><br />
+	<b>Implicit:</b> all grammatical containers may acknowledge only one prolongational branch as 	prolongational head.
+<br /><br />
+<b><a href="gttmrules.html#prwfr2">PWFR 2:</a></b><br />
+
+<br />
+	<b>Implicit:</b> ProlongationalBranch objects may be initialised or set with a 	ProlongationalTypeEnum value, which identifies it as one of the three types. This is then 	used by the music generator to produce appropriate pitches.
+	<br /><br /><b>Explicit:</b> In cases where a ProlongationalBranch doesn't have the ProlongationalTypeEnum 	set, and it's not the prolongational head, then a method is used to analyse its relation to its 	parent. This necessitates that it is associated with a pitch event, and so is its parent.
+<br /><br /><b><a href="gttmrules.html#prwfr3">PWFR 3:</a></b> <br />
+	<br /><b>Implicit:</b> All branches are associated with beats which denote the inception of a pitch event. 	Each such beat must be encapsulated within the grouping structure.
+
+	<br /><br />
+	<b><a href="gttmrules.html#prwfr4">PWFR 4 (no crossing branches):</a> </b><br />
+	<br />
+	<b>Explicit:</b> a method is called when the GrammarContainer is under construction to check that 	all the prolongational branches adhere to this rule (i.e. that no branches are crossing over in 	their mapping to the metrical structure).
+<br /><br />
+</body>
+
+</html>

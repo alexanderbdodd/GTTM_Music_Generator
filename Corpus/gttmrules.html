@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html>
+<head></head>
+<body>
+<h1>List of GTTM Grammar Rules:</h1>
+
+<p>This page documents the Generative Theory of Tonal music grammar rules which have been used in designing and implementing the Music Generator program.</p>
+
+<p>Contents:
+<ul><li><a href="#grules">Grouping Structure Rules</a>
+<ul><li><a href="#gwfrules">Well-Formedness Rules</a></li>
+<li><a href="#gprules">Preference Rules</a></li></ul></li>
+
+<li><a href="#mrules">Metrical Rules</a>
+<ul><li><a href="#mwfrules">Well-Formedness Rules</a></li>
+<li><a href="#mprules">Preference Rules</a></li></ul></li>
+
+<li><a href="#trules">Time-Span Reduction Rules</a>
+<ul><li><a href="#twfrules">Well-Formedness Rules</a></li>
+<li><a href="#tprules">Preference Rules</a></li></ul></li>
+
+<li><a href="#prules">Prolongational Reduction Rules</a>
+<ul><li><a href="#pwfrules">Well-Formedness Rules</a></li>
+<li><a href="#pprules">Preference Rules</a></li></ul></li>
+
+
+</ul></p>
+
+<h1 id="grules">Grouping Structure Rules</h1>
+
+<h2 id="gwfrules"><u>Grouping Well-Formedness rules:</u></h2>
+</br>
+
+<b id="gwfr1">GWFR 1:</b> Any contiguous sequence of pitch-events, drum beats, or the like can constitute a group, and only contiguous sequences can constitute a group.
+	Basic structure of grouping.
+<br /> 
+	<br />
+<b id="gwfr2">GWFR 2:</b>  A piece constitutes a group.
+
+(Expresses the intuition that a piece is heard as a whole rather than merely as a sequence of events).<br /> <br /> 
+
+<b id="gwfr3">GWFR 3: </b> A group may contain smaller groups.
+
+	Provides the possibility of embedding groups.
+	<br /><br /> 
+	
+<b id="gwfr4">GWFR 4:</b> If a group G1 contains part of a group G2, it must contain all of G2.<br /> <br /> 
+
+<b id="gwfr5">GWFR 5:</b> If a group G1 contains a smaller group G2, then G1 must be exhaustively partitioned into smaller groups.
+<br /><br /> 
+<h2 id="gprules"><u>Grouping Structure Preference Rules:</u></h2>
+ 
+<br /> <b>Local Details Rules:</b><br/> <br /> 
+
+<b id="gpr1">GPR 1:</b> Strongly avoid groups containing a single event.
+	One strongly tends not to hear single events as groups.
+	Avoid analyses with small groups. The smaller, the less preferable.
+	
+	<br /><br />
+
+<b  id="gpr2">GPR 2 (Proximity): </b> Consider a sequence of four notes, n1, n2, n3, n4. All else being equal, the transition n2 – n3 may be heard as a group boundary if: <br/>
+<b  id="gpr2a">a.)</b> (Slur/Rest) the interval of time from the end of n2 to the beginning of n3 is greater than that from the end of n1 to the beginning of n2 and that from the end of n3 to the beginning of n4, or if <br/>
+<b  id="gpr2b">b.)</b> (Attack-point) the interval of time between the attack points of n2 and n3 is greater than that between the attack points of n1 and n2, and that between the attack points of n3 and n4. <br/>
+<br /> <br /> 
+<b  id="gpr3">GPR 3 (Change):</b> Consider a sequence of four notes, n1, n2, n3, n4. All else being equal, the transition n2-n3 may be heard as a group boundary if <br /> 
+<b  id="gpr3a">a.)</b> (Register) the transition n2-n3 involves a greater intervallic distance than both n1-n2 and n3-n4, or if <br /> 
+<b  id="gpr3b">b.)</b> (Dynamics) the transition n2-n3 involves a change in dynamics and n1-n2 and n3-n4 do not, or if <br /> 
+<b  id="gpr3c">c.)</b> (Articulation) the transition n2-n3 involves a change in articulation and n1-n2 and n3-n4 do not, or if <br /> 
+<b  id="gpr3d">d.)</b> (Length) n2 and n3 are of different lengths and both pairs n1, n2 and n3, n4 do not differ in length. <br /> 
+
+<br /> <br /> 
+
+	GPR 2 and GPR 3 may reinforce each other, or come into conflict.
+	In general, all cases of GPR 3, with the possible exception of the dynamics rule, appear to have weaker effects that GPR 2. 
+	
+	<br /> <br /> 
+
+<b  id="gpr4">GPR 4 (Intensification):</b> Where the effects picked out by GPRs 2 and 3 are relatively more pronounced, a larger-level group boundary may be placed.
+	E.g. a rest at the end of a group intensifies the effects of GPR 2 at that particular transition.
+	
+	<br /> <br /> 
+
+<br /> <b>Organisation of larger level grouping</b><br/><br/>
+	
+<b  id="gpr5">GPR 5 (Symmetry):</b> Prefer grouping analyses that most closely approach the ideal subdivision of groups into two parts of equal length. <br /> 
+<br /> 
+<b  id="gpr6">GPR 6 (Parallelism):</b> Where two or more segments of the music can be construed as parallel, they preferably form parallel parts of groups. <br /> 
+Parallel passages should be analysed as forming parallel parts of groups rather than entire groups.
+<br /> 
+<b  id="gpr7">GPR 7 (Time-Span and Prolongational Stability): </b>Prefer a grouping structure that results in more stable time-span and/or prolongational reductions. <br /> 
+
+
+<h1 id="mrules">Metrical Rules</h1>
+
+<br /> <br /> 
+<h2 id="mwfrules"><u>Metrical Well-Formedness Rules:</u></h2> <br /> 
+
+<b id="mwfr1"> MWFR 1: </b> Every attack point must be associated with a beat at the smallest metrical level present at that point in the piece. <br /> <br /> 
+
+<b id="mwfr2"> MWFR 2: </b> Every beat at a given level must also be a beat at all smaller levels present at that point in the piece. <br /> <br /> 
+
+<b>Rules relating particularly to tonal music idiom:</b> <br /> 
+<b id="mwfr3">MWFR 3: </b>At each metrical level, strong beats are spaced either two or three beats apart. <br /> <br /> 
+
+<b id="mwfr4"> MWFR 4: </b>The tactus and immediately larger metrical levels must consist of beats equally spaced throughout the piece. At subtactus metrical levels, weak beats must be equally spaced between the surrounding strong beats.
+<br /> <br /> 
+
+<h2 id="mprules"><u>Metrical Preference Rules:</u></h2><br /> <br /> 
+
+<b id="mpr1">MPR 1 (Parallelism): </b>Where two or more groups or parts of groups can be construed as parallel, they preferable receive parallel metrical structure. <br /><br />  
+<b id="mpr2">MPR 2 (Strong Beat Early):</b> Weakly prefer a metrical structure in which the strongest beat in a group appears relatively early in the group. <br /> <br /> 
+<b id="mpr3">MPR 3 (Event): </b>Prefer a metrical structure in which beats of level L that coincide with the inception of pitch-events are strong beats of L. <br /> <br /> 
+<b id="mpr4">MPR 4 (Stress): </b>Prefer a metrical structure in which beats of level L that are stressed are strong beats of level L. <br /> <br /> 
+<b id="mpr5">MPR 5 (Length): </b>Prefer a metrical structure in which a relatively strong beat occurs at the inception of either, <br /> <br /> 
+<b id="mpr5a">a.)</b> A relatively long pitch-event, <br /> 
+<b id="mpr5b">b.)</b> A relatively long duration of a dynamic, <br /> 
+<b id="mpr5c">c.)</b> A relatively long slur, <br />  
+<b id="mpr5d">d.)</b> A relatively long pattern of articulation, <br /> 
+<b id="mpr5e">e.)</b> A relatively long duration of a pitch in the relevant levels of the time-span reduction, or <br /> 
+<b id="mpr5f">f.)</b> A relatively long duration of a harmony in the relevant levels of the time-span reduction (harmonic rhythm). <br /> <br /> 
+
+<b id="mpr6">MPR 6 (Bass):</b> Prefer a metrically stable bass.
+<br /> <br /> 
+<b id="mpr7">MPR 7 (Cadence):</b> Strongly prefer a metrical structure in which cadences are metrically stable; that is, strongly avoid violations of local preference rules within cadences.
+<br /> <br /> 
+<b id="mpr8">MPR 8 (Suspension):</b> Strongly prefer a metrical structure in which a suspension is on a stronger beat than its resolution.
+<br /> <br /> 
+<b id="mpr9">MPR 9 (Time-Span Interaction):</b> Prefer a metrical analysis that minimizes conflict in the time-span reduction.
+<br /> <br /> 
+<b id="mpr10">MPR 10 (Binary Regularity):</b> Prefer metrical structures in which at each level every other beat is strong.
+<br /> <br /> <br /> 
+
+<h1 id="trules">Time-Span Reduction Rules</h1>
+
+<h2 id="twfrules"><u>Time-Span Reduction Well-Formedness Rules:</h2></u>
+
+<b id="tsrwfr1">TSRWFR 1:</b> For every time-span T, there is an event e (or a sequence of events ei-ej) that is the head of T.</b>
+<br /> <br /> 
+
+<b id="tsrwfr2">TSRWFR 2:</b> If T does not contain any other time-span (that is, if T is at the smallest level of time-spans), then e is whatever event occurs in T.
+<br /> <br /> 
+
+<b id="tsrwfr3">TSRWFR 3:</b> If T contains other time-spans, let T1,...,Tn be the (regular or augmented) time-spans immediately contained in T and let e1,..,en be their respective heads. Then: </b>
+<br /> 
+<b id="tsrwfr3a">a.)</b> (Ordinary Reduction) The head of T may be one of the events e1,...,en. <br /> 
+<b id="tsrwfr3b">b.)</b> (Fusion) If e1,...,en are not separated by a group boundary ('locality' condition), the head of T may be the superimposition of two or more of e1,...,en.
+<br /> <b id="tsrwfr3c">c.)</b> (Transformation) If e1,...,en are not separated by a group boundary, the head of T may be some mutually consonant combination of pitches chosen out of e1,...,en.
+<br /> <b id="tsrwfr3d">d.)</b> (Cadential Retention) The head of T may be a cadence whose final is en (the head of Tn, the last time-span immediately contained in T) and whose penult, if there is one, is the head of a time-span immediately preceding Tn, though not necessarily at the same level.
+<br /> <br /> 
+<b id="tsrwfr4">TSRWFR 4:</b> If a two-element cadence is directly subordinate to the head e of a time-span T, the final is directly subordinate to e and the penult is directly subordinate to the final.
+<br /> <br /> 
+<h2 id="tprules"><u>Time-Span Reduction Preference Rules:</u></h2><br /> 
+
+<b id="tspr1">TSRPR 1 (Metrical Position): </b> Of the possible choices for head of a time-span T, prefer a choice that is in a relatively strong metrical position.
+<br /> <br /> 
+<b id="tspr2">TSRPR 2 (Local Harmony):</b> Of the possible choices for head of a time-span T, prefer a choice that is
+<br /> <b id="tspr2a">a.)</b> Relatively intrinsically consonant, <br /> 
+<b id="tspr2b">b.)</b> Relatively closely related to the local tonic. <br /> 
+<br /> <br /> 
+<b id="tspr3">TSRPR 3 (Registral Extremes):</b> Of the possible choices for head of a time-span T, weakly prefer a choice that has<br /> 
+<b id="tspr3a">a.)</b> A higher melodic pitch<br /> 
+<b id="tspr3b">b.)</b> A lower bass pitch.<br /> 
+ <br />  
+<b id="tspr4">TSRPR 4 (Parallelism):</b> If two or more time-spans can be construed as motivically and/or rhythmically parallel, preferable assign them parallel heads.
+<br /> <br /> 
+<b id="tspr5">TSRPR 5 (Metrical Stability):</b> In choosing the head of time-span T, prefer a choice that results in more stable choice of metrical structure.
+<br /> <br /> 
+
+<b id="tspr6">TSRPR 6 (Prolongational Stability): </b>In choosing the head of a time-span T, prefer a choice that results in more stable choice of prolongational reduction.
+<br /> <br /> 
+
+<b id="tspr7">TSRPR 7 (Cadential Retention):</b> If the following conditions obtain in a time-span T, then label the progression as a cadence and strongly prefer to choose it as head:
+<br /> <b>i.)</b> There is an event or sequence of two-events (ei-ej) forming the progression for a full, half, or deceptive cadence.<br /> 
+<b>ii.)</b> The last element of this progression is at the end of T or is prolonged to the end of T.<br /> 
+<b>iii.)</b> There is a larger group G containing T for which the progression can function as a structural ending.<br /> <br /> 
+<b id="tspr8">TSRPR 8 (Structural Beginning):</b> If, for a time-span T, there is a larger group G containing T for which the head of T can function as structural beginning, then prefer as head of T an event relatively close to the beginning of T (and hence to the beginning of G as well).
+<br /> <br /> 
+
+<b id="tspr9">TSRPR 9:</b> In choosing the head of a piece, prefer the structural ending to the structural beginning.
+		<br /> -tonal pieces are fundamentally goal oriented.<br /> <br /> 
+
+
+<h1 id="prules"><u>Prolongational Reduction Rules</u></h1><br /> 
+		
+<h2 id="pwfrules"><u>Prolongational Reduction Well-Formedness Rules:</h2></u><br /> 
+<b id="prwfr1">PRWFR 1:</b> There is a single event in the underlying grouping structure of every piece that functions as prolongational head.
+<br /> <br /> 
+<b id="prwfr2">PRWFR 2:</b> An event ei can be a direct elaboration of ej in any of the following ways:
+<br /> <b id="prwfr2a">a.)</b> ei is a strong prologation of ej if the roots, bass notes, and melodic notes of the two events are identical. 
+<br /> <b id="prwfr2b">b.)</b> ei is a weak prolongation of ej if the roots of the two events are identical, but the bass and/or melodic notes differ.
+<br /> <b id="prwfr2c">c.)</b> ei is a progression to or from ej if the harmonic roots of the two events are different.
+<br /> <br /> 
+<b id="prwfr3">PRWFR 3:</b> Every event in the underlying grouping structure is either the prolongational head or a recursive elaboration of the prolongational head.
+<br /> <br /> 
+<b id="prwfr4">PRWFR 4 (No Crossing Branches):</b> If an event ei is a direct elaboration of an event ej, every event between ei and ej must be a direct elaboration of either ei, ej, or some event between them.
+<br /> 
+<h2 id="pprules"><u>Prolongational Reduction Preference Rules:</u></h2><br /> 
+<b id="prpr1">PRPR 1 (Time-Span Importance):</b> In choosing the prolongationally most important event e of a prolongational region (ei - ej), strongly prefer a choice in which e is relatively time-span important.
+<br /> <br /> 
+<b id="prpr2">PRPR 2 (Time-Span Segementation):</b> Let e be the prolongationally most important event in a prolongational region (ei - ej). If there is a time-span that contains ei and e but not ej, prefer a prolongational reduction in which e is an elaboration of ei; similarly with the roles of ei and ej reversed.
+<br /> <br /> 
+<b id="prpr3">PRPR 3 (Prolongational Connection):</b> In choosing the prolongationally most important event e in a prolongational region (ei - ej) prefer an e that attaches so as to form a maximally stable prolongational connection with one of the endpoints of the region.
+<br /> <br /> <b>Stability Conditions for Prolongational Connections:</b>
+	<br /> <b id="branchingcondition">1.(Branching Condition)</b>
+		<br /> <b "branchingconditiona">a.)</b> Right strong prolongations are more stable than right weak prolongations, which 		in turn are more stable than right progressions.
+		<br /> <b "branchingconditionb">b.)</b> Left progressions are more stable than left weak prolongations, which in turn are 		more stable than left strong prolongations.
+	<br /> <b id="pitchcondition">2. (Pitch collection condition)</b><br /> 
+		A connection between two events is more stable if they involve or imply a common 		diatonic collection. <br /> 
+	<b id="melodiccondition">3. (Melodic Condition)</b><br /> 
+		<b id="melodicconditiona">a.) (Distance):</b> A connection between two events is melodically more stable if the 		interval between them is smaller (with the exception of the octave which is 			relatively stable).
+		<br /> <b id="melodicconditionb">b.) (Direction):</b> An ascending melodic progression is more stable as a right branching 		structure; a descending one is more stable as a left branching structure.
+	<br /> <b id="harmoniccondition">4. (Harmonic Condition)</b><br /> 
+		<b id="harmonicconditiona">a.) (Distance):</b> A connection between two events is harmonically more stable if their 		roots are closer on the circle of fifths.
+		<br /> <b id="harmonicconditionb">b.) (Direction):</b> A progression that ascends along the circle of fifths is most stable as a 		right-branching structure; one that descends along the circle of fifths or produces a 		sub-dominant-to-dominant relationship is most stable as a left-branching structure 
+<br /> <br /> 
+<b id="prpr4">PRPR 4 (Prolongational Importance):</b> Let e be the prolongationally most important event in a region (ei - ej). Prefer a prolongational reduction in which e is an elaboration of the prolongationally more important of the endpoints.
+<br /> <br /> 
+<b id="prpr5">PRPR 5 (Parallelism):</b> Prefer a prolongational reduction in which parallel passages receive parallel analyses.
+<br /> <br /> 
+
+<b id="prpr6">PRPR 6 (Normative Prolongational Structure):</b> A cadenced group preferably contains four (five) elements in its prolongational structure:<br /> 
+<b id="prpr6a">a.)</b> a prolongational beginning.
+<br /> <b id="prpr6b">b.)</b> a prolongational ending consisting of one element of cadence,
+<br /> <b id="prpr6c">c.)</b> a right-branching prolongation as the most important direct elaboration of the prolongational beginning.
+<br /> <b id="prpr6d">d.)</b> a right-branching progression as the (next) most important direct elaboration of the prolongational beginning,
+<br /> <b id="prpr6e">e.)</b> a left-branching 'sub-dominant' progression as the most important elaboration of the first element of the cadence.
+
+
+
+
+</body>
+
+</html>

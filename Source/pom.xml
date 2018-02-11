@@ -74,7 +74,7 @@
 						</goals>
 						<configuration>
 							<shadedArtifactAttached>true</shadedArtifactAttached>
-							<shadedClassifierName>gttm-music-generator</shadedClassifierName> <!-- Any name that makes sense -->
+							<shadedClassifierName>gttm-music-generator-with-dependencies</shadedClassifierName> <!-- Any name that makes sense -->
 						</configuration>
 					</execution>
 				</executions>

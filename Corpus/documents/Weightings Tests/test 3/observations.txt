@@ -1,0 +1,9 @@
+Test 3 Observations:
+
+Qualitative Aspects:
+
+The music seems more interesting and more varied.
+
+Rate of Generation comments:
+
+Rate of generation is better. However, it took quite while to recursively generate pitch chains at one stage indicating that it can find more solutions with this weighting.

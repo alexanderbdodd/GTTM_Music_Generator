@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Phrase_Generator Package</h1>
+<p>The Phrase_Generator package provides classes to be used in generating musical phrase solutions to 
+phrase-length grammars (<a href="musicgenerationprocess.html">the music generation process is explained here</a>).</p>
+
+<h2>Classes</h2>
+
+The Phrase_Generator Package contains the following classes:
+
+<ol>
+<li>
+<b>Generator Abstract Class</b>
+<p>The Generator class provides methods for extract separate grammar structures from a GrammarConstructor object and get methods to access them. 
+The class is designed to be extended by specific generator classes.</p>
+</li>
+<li>
+<b>PhraseGenerator Class</b>
+<p>The PhraseGenerator class is used to generate musical phrase solutions to a phrase-structure grammar.</p>
+</li>
+<li>
+<b>PitchGenerator Class</b>
+<p>The PitchGenerator class is used to generate pitch solutions which fit the relevant grouping structure, prolongational reduction, and time-span reduction structure constraints.</p>
+</li>
+<li>
+<b>DurationsGenerator Class</b>
+<p>The DurationsGenerator class is used to produce rhythm solutions to the pitch solutions based on the relevant metrical structure and grouping structure constraints.</p>
+</li>
+<li>
+<b>NoteGenerator Class</b>
+<p>The NoteGenerator class provides methods for randomly generating different musical elements including AttackEvents, Scales, and Keys.</p>
+</li>
+<li>
+<b>HomophonyConstructor Class</b>
+<p>An incomplete class that is supposed to provide homophonic solutions to the monophonic solutions produced by the PhraseGenerator according to GTTM rules constraints. This class is incomplete and not useable at present.</p>
+</li>
+</ol>
+</body>
+</html>

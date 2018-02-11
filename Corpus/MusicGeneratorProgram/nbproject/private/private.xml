@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/Alexander/Documents/NetBeansProjects/MusicGeneratorProgram/src/GTTM_Analyser/IntervalConsonantRanking.java</file>
+            <file>file:/C:/Users/Alexander/Documents/NetBeansProjects/MusicGeneratorProgram/src/main.java</file>
+            <file>file:/C:/Users/Alexander/Documents/NetBeansProjects/MusicGeneratorProgram/src/GTTM_Analyser/TimeSpanReductionAnalyser.java</file>
+            <file>file:/C:/Users/Alexander/Documents/NetBeansProjects/MusicGeneratorProgram/src/Grammar_Generator/PhraseGrammarConstructor.java</file>
+            <file>file:/C:/Users/Alexander/Documents/NetBeansProjects/MusicGeneratorProgram/test/Phrase_Generator/PitchGeneratorTest.java</file>
+            <file>file:/C:/Users/Alexander/Documents/NetBeansProjects/MusicGeneratorProgram/test/GTTM_Analyser/RatingsGeneratorTest.java</file>
+            <file>file:/C:/Users/Alexander/Documents/NetBeansProjects/MusicGeneratorProgram/src/Manipulators/IntervalConstructor.java</file>
+            <file>file:/C:/Users/Alexander/Documents/NetBeansProjects/MusicGeneratorProgram/src/Elements/Key.java</file>
+            <file>file:/C:/Users/Alexander/Documents/NetBeansProjects/MusicGeneratorProgram/src/Phrase_Generator/PhraseGenerator.java</file>
+            <file>file:/C:/Users/Alexander/Documents/NetBeansProjects/MusicGeneratorProgram/src/Phrase_Generator/Generator.java</file>
+            <file>file:/C:/Users/Alexander/Documents/NetBeansProjects/MusicGeneratorProgram/test/Manipulators/IntervalConstructorTest.java</file>
+            <file>file:/C:/Users/Alexander/Documents/NetBeansProjects/MusicGeneratorProgram/test/GTTM_Analyser/TimeSpanReductionAnalyserTest.java</file>
+            <file>file:/C:/Users/Alexander/Documents/NetBeansProjects/MusicGeneratorProgram/test/Manipulators/ScaleConstructorTest.java</file>
+            <file>file:/C:/Users/Alexander/Documents/NetBeansProjects/MusicGeneratorProgram/src/Elements/DurationEnum.java</file>
+            <file>file:/C:/Users/Alexander/Documents/NetBeansProjects/MusicGeneratorProgram/src/Phrase_Generator/DurationsGenerator.java</file>
+            <file>file:/C:/Users/Alexander/Documents/NetBeansProjects/MusicGeneratorProgram/src/Phrase_Generator/PitchGenerator.java</file>
+        </group>
+    </open-files>
+</project-private>

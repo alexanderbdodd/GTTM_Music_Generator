@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+
+<p>This describes the set of tests that should be implemented for the GTTM_Analyser module classes.</p>
+
+<style>
+table, th, td {
+    border: 1px solid black;
+	 border-collapse: collapse;
+ padding: 15px;
+	}
+
+</style>
+
+<h1>GTTM Tests Documentation</h2>
+
+<p><b>Contents:</b>
+<ul><li><a href="#gtest">GroupingStructureAnalyser Class Tests</a></li>
+
+<li><a href="#mtest">MetricalStructureAnalyser Class</a></li>
+
+<li><a href="#ttest">TimeSpanReductionAnalyser Class</a></li>
+
+<li><a href="#ptest">ProlongationalReductionAnalysis Class</a></li>
+
+<li><a href="#rtest">RatingsGenerator Class</a></li></ul></p>
+
+<h2 id="gtest">GroupingStructureAnalyser Class Tests:</h2>
+
+<table style="width:100%;">
+  <tr>
+    <th>Method Name:</th>
+    <th>Testing For:</th>
+    <th>Expected Rating:</th>
+    <th>Extra Notes:</th>
+  </tr>
+  <tr>
+    <td>assessGPR2a()</td>
+    <td>Strong GPR2a example</td>
+    <td>1.0 </td>
+    <td>Testing an input of four AttackEvents, where the intervals between n1-n2 and n3-n4 are equal in value, and shorter than the interval n2-n3.</td>
+  </tr>
+   <tr>
+    <td>assessGPR2a()</td>
+    <td>No Preference GPR2a example</td>
+    <td>0.5 </td>
+    <td>All intervals same value</td>
+  </tr>
+   <tr>
+    <td>assessGPR2a()</td>
+    <td>Middling Preference GPR2a candidate </td>
+    <td>0.6</td>
+    <td>Testing an example of four notes with different intervals of time between each other. n2 - n3 must have greatest interval</td>
+  </tr>
+   <tr>
+    <td>assessGPR2a()</td>
+    <td>Weak GPR2a example</td>
+    <td>0.0</td>
+    <td>Interval n1-n2 greater in value than n2-n3.</td>
+  </tr>
+   <tr>
+    <td>assessGPR2b()</td>
+    <td>Strong GPR2b example</td>
+    <td>1.0</td>
+    <td>Testing an input of four AttackEvents, where the intervals between the attack points of n1-n2 and n3-n4 are equal in value, and shorter than the interval n2-n3.
+</td>
+  </tr>
+  <tr>
+    <td>assessGPR2b()</td>
+    <td>No Preference GPR2b example</td>
+    <td>0.5</td>
+    <td>All intervals same value</td>
+  </tr>
+  <tr>
+    <td>assessGPR2b()
+</td>
+    <td>Middling Preference GPR2b example</td>
+    <td>0.6</td>
+    <td>Testing an example of four notes with different intervals of time between each other. n2 - n3 must have greatest interval</td>
+  </tr>
+  <tr>
+    <td>assessGPR2b()
+</td>
+    <td>Weak GPR2b example</td>
+    <td>0.0</td>
+    <td>Intervals between n1 and n2 is greater than interval between n2 and n3.</td>
+  </tr>
+  <tr>
+    <td>assessGPR3a()</td>
+    <td>Strong GPR3a example</td>
+    <td>1.0</td>
+    <td>Testing an example where n2 has a different intervallic value from n3, but n1 and n2, and n3 and n4 do not have a change in articulation.</td>
+  </tr>
+  <tr>
+    <td>assessGPR3a()</td>
+    <td>Weak GPR3a example</td>
+    <td>0.0</td>
+    <td>Test an example where n1 to n2 involves a greater change in intervallic distance than n2-n3.</td>
+  </tr>
+  
+ <tr> 
+ <td>assessGPR3a()</td>
+<td>No Preference GPR3a example</td>
+<td>0.5</td>
+<td>An example where all of the AttackEvent values (n1, n2, n3, and n4) represent the same intervallic value.</td></tr>
+<td>assessGPR3b()</td>
+<td>Strong GPR3b example</td>
+<td>1.0</td>
+<td>Testing an example where n2 has a different dynamic value from n3, but n1 and n2, and n3 and n4 do not have a change in articulation.</td>
+</tr>
+<tr>
+<td>assessGPR3b()</td>
+<td>Weak GPR3b example</td>
+<td>0.0</td>
+<td>Test an example where n1 to n2 involves a change in dynamic, but n2-n3 does not.</td></tr>
+<tr><td>assessGPR3b()</td>
+<td>No Preference GPR3b example</td>
+<td>0.5</td>
+<td>An example where all of the AttackEvent values (n1, n2, n3, and n4) represent the same dynamic value.</td></tr>
+<tr>
+<td>assessGPR3c()</td>
+<td>Strong GPR2c example</td>
+<td>1.0</td>
+<td>Testing an example where n2 has a different articulation value from n3, but n1 and n2, and n3 and n4 do not have a change in articulation.</td>
+</tr>
+<tr>
+<td>assessGPR3c()</td>
+<td>Weak GPR2c example</td>
+<td>0.0</td>
+<td>Test an example where n1 to n2 involves a change in articulation, but n2-n3 does not.</td></tr>
+<tr>
+<td>assessGPR3c()</td>
+<td>Mild GPR2c example</td>
+<td>0.5</td>
+<td>An example where all of the AttackEvent values (n1, n2, n3, and n4) represent the same articulation value.</td></tr>
+<tr><td>assessGPR3d()</td>
+<td>Strong GPR2d example</td>
+<td>1.0</td>
+<td>Testing an example where n2 has a different length value from n3, but n1 and n2, and n3 and n4 do not have a change in articulation.</td></tr>
+<tr><td>assessGPR3d()</td>
+<td>Weak GPR2d example</td>
+<td>0.0</td>
+<td>Test an example where n1 to n2 involves a change in length, as well as n2-n3.</td></tr>
+<tr><td>assessGPR3d()</td>
+<td>Mild GPR2d example</td>
+<td>0.5</td>
+<td>An example where all of the AttackEvent values (n1, n2, n3, and n4) represent the same articulation value.</td></tr>
+
+  
+</table><br/>
+
+
+
+<h2 id="mtest">MetricalStructureAnalyser Class:</h2>
+
+<table style="width:100%;">
+  <tr>
+    <th>Method Name:</th>
+    <th>Testing For:</th>
+    <th>Expected Rating:</th>
+    <th>Extra Notes:</th>
+  </tr>
+  
+<tr><td>assessMPR5a</td>
+<td>Strong example</td>
+<td>1.0</td>
+<td>Testing that a chosen pitch event which is relatively long returns a strong rating.</td></tr>
+<tr><td>assessMPR5a</td>
+<td>Weak example</td>
+<td>0.0</td>
+<td>Testing that a chosen pitch event which is relatively short returns a weak rating.</td></tr>
+<tr><td>assessMPR5a</td>
+<td>Middling example</td>
+<td>0.3 > x < 0.7</td>
+<td>Testing that a chosen pitch event which is relatively middling in value returns a strong rating.</td></tr>
+<tr><td>assessMPR5b</td>
+<td>Strong example</td>
+<td>1.0</td>
+<td>Testing that a chosen pitch event which is relatively long duration of  a dynamic receives a strong rating.</td></tr>
+<tr><td>assessMPR5b</td>
+<td>Weak example</td>
+<td>0.0</td>
+<td>Testing that a chosen pitch event which is relatively short duration of  a dynamic receives a weak rating.</td></tr>
+<td>assessMPR5b</td>
+<td>Middling example</td>
+<td>0.5</td>
+<td>Testing that a chosen pitch event which is relatively middling in value returns a strong rating.</td></tr>
+<td>assessMPR5b</td>
+<td>Weak example</td>
+<td>0.0</td>
+<td>Testing that a chosen pitch event which isn't the inception of a dynamic receives a weak rating.</td></tr>
+<tr><td>assessMPR5c</td>
+<td>Strong example</td>
+<td>1.0</td>
+<td>Testing that a chosen pitch event which is relatively long duration of  a slur receives a strong rating.</td></tr>
+<td>assessMPR5c</td>
+<td>Weak example</td>
+<td>0.0</td>
+<td>Testing that a chosen pitch event which is relatively short duration of  a slur receives a weak rating.</td></tr>
+<td>assessMPR5c</td>
+<td>Middling example</td>
+<td>0.5</td>
+<td>Testing that a chosen pitch event which is relatively middling value returns a strong rating.</td></tr>
+<tr><td>assessMPR5c</td>
+<td>Weak example</td>
+<td>0.0</td>
+<td>Testing that a chosen pitch event which isn't the inception of a slur receives a weak rating.</td></tr>
+<td>assessMPR5d</td>
+<td>Strong example</td>
+<td>1.0</td>
+<td>Testing that a chosen pitch event which is relatively long duration of articulation receives a strong rating.</td></tr>
+<tr><td>assessMPR5d</td>
+<td>Weak example</td>
+<td>0.0</td>
+<td>Testing that a chosen pitch event which is relatively short duration of articulation receives a weak rating.</td></tr>
+<tr><td>assessMPR5d</td>
+<td>Middling example</td>
+<td>0.5</td>
+<td>Testing that a chosen pitch event which is relatively middling value returns a strong rating.</td></tr>
+<tr><td>assessMPR5d</td>
+<td>Weak example</td>
+<td>0.0</td>
+<td>Testing that a chosen pitch event which isn't the inception of articulation receives a weak rating.</td></tr>
+<td>assessMPR5</td>
+<td>Strong example</td>
+<td>1.0</td>
+<td>Testing that a chosen pitch event which is strong for MPR5a,b,c,d rates as strong.</td></tr>
+<tr><td>assessMPR5</td>
+<td>Middling example</td>
+<td>0.5</td>
+<td>Testing that a chosen pitch event which is no preference for MPR5a,b,c,d rates as no preference.</td></tr>
+<tr><td>assessMPR5</td>
+<td>Weak example</td>
+<td>0.0</td>
+<td>Testing that a chosen pitch event which is weak for MPR5a,b,c,d rates as weak.</td></tr>
+</table>
+
+
+  
+<h2 id="ttest">TimeSpanReductionAnalyser Class:</h2>
+
+<table style="width:100%;">
+  <tr>
+    <th>Method Name:</th>
+    <th>Testing For:</th>
+    <th>Expected Rating:</th>
+    <th>Extra Notes:</th>
+  </tr>
+  <tr><td>assessConsonance</td>
+<td>Two Branches have weak consonance</td>
+<td>0.1</td>
+<td>Two AttackEvents form minor 2nd</td></tr>
+<tr><td>assessConsonance</td>
+<td>Two Branches have mild consonance</td>
+<td>0.3 < x > 0.7</td>
+<td>Two AttackEvents form a Perfect 4th</td></tr>
+<tr><td>assessTonicRelation</td>
+<td>Strong</td>
+<td>1.0</td>
+<td>event is the same key as the tonic</td></tr>
+<tr><td>assessTonicRelation</td>
+<td>Weak</td>
+<td>0.0</td>
+<td>event not in the diatonic collection</td></tr>
+<tr><td>assessTonicRelation</td>
+<td>Weak</td>
+<td>0.4</td>
+<td>event is submediant</td></tr>
+<tr><td>assessTonicRelation</td>
+<td>Mild</td>
+<td>0.7</td>
+<td>supertonic</td></tr>
+<tr><td>assessTSPR2</td>
+<td>Strong</td>
+<td>1.0</td>
+<td>intrinsically consonant and closely related to tonic</td></tr>
+<tr><td>assessTSPR2</td>
+<td>Weak</td>
+<td>0.0</td>
+<td>Lowest consonance and no relation to local tonic.</td></tr>
+<tr><td>assessTSPR2</td>
+<td>Mild</td>
+<td>0.2 < x > 0.8</td>
+<td>medium consonance and relation to tonic.</td></tr>
+<tr><td>assessTonicRelationBetweenEvents</td>
+<td>Strong</td>
+<td>1.0</td>
+<td>Parent is stronger relation to tonic than child.</td></tr>
+<tr><td>assessTonicRelationBetweenEvents</td>
+<td>Weak</td>
+<td>0.0</td>
+<td>Child is stronger relation to tonic than parent</td></tr>
+<tr><td>assessTonicRelationBetweenEvents</td>
+<td>Mild</td>
+<td>0.5</td>
+<td>Same relation to tonic</td></tr>
+<tr><td>assessTSPR3a</td>
+<td>Strong</td>
+<td>1.0</td>
+<td>The same pitch</td></tr>
+<tr><td>assessTSPR3a</td>
+<td>Weak</td>
+<td>0.0</td>
+<td>A pitch several octaves apart</td></tr>
+<tr><td>assessTSPR3a</td>
+<td>Mild</td>
+<td>0.4 < x > 0.6</td>
+<td>Just under octave distance</td></tr>
+ 
+  
+  </table>
+  
+  <br />
+
+  
+<h2 id="ptest">ProlongationalReductionAnalysis Class:</h2>
+
+<table style="width:100%;">
+  <tr>
+    <th>Method Name:</th>
+    <th>Testing For:</th>
+    <th>Expected Rating:</th>
+    <th>Extra Notes:</th>
+  </tr>
+  
+<tr><td>assessBranchingStability</td>
+<td>Unstable right branch</td>
+<td>0.2</td>
+<td>Progression, right branch</td></tr>
+<tr><td>assessBranchingStability</td>
+<td>Stable left branch</td>
+<td>1.0</td>
+<td>Progression, left branch,</td></tr>
+<tr><td>assessBranchingStability</td>
+<td>Unstable left branch</td>
+<td>0.2</td>
+<td>Strong prolongation, left branch</td></tr>
+<tr><td>assessBranchingStability</td>
+<td>Weak prolongation</td>
+<td>0.5</td>
+<td>Weak prolongation, and branch direction</td></tr>
+<tr><td>assessMelodicStabilityA</td>
+<td>small melodic distance</td>
+<td>0.9</td><td></td></tr>
+
+<tr><td>assessMelodicStabilityA</td>
+<td>large melodic distance</td>
+<td>0.0</td><td></td></tr>
+
+<tr><td>assessMelodicStabilityB</td>
+<td>right branching melodic ascension</td>
+<td>1.0</td><td></td></tr>
+
+<tr><td>assessMelodicStabilityB</td>
+<td>right branching melodic descension</td>
+<td>0.0</td><td></td></tr>
+
+<tr>
+<td>assessMelodicStabilityB</td>
+<td>left branching melodic ascension</td>
+<td>0.0</td><td></td></tr>
+
+<tr><td>assessMelodicStabilityB</td>
+<td>left branching melodic descension</td>
+<td>1.0</td><td></td></tr>
+
+<tr>
+<td>assessMelodicStabilityB</td>
+<td>no ascension or descension</td>
+<td>0.5</td><td></td></tr>
+
+<tr><td>assessProlongationalType</td>
+<td>A beat represents a strong prolongation of another.</td>
+<td>Strong_Prolongation</td><td></td></tr> 
+
+<tr><td>assessProlongationalType</td>
+<td>A beat represents a strong prolongation of another (where beat refers to an interval).</td>
+<td>Strong_Prolongation</td><td></td></tr> 
+
+<tr><td>assessProlongationalType</td>
+<td>A beat represents a weak prolongation of another.</td>
+<td>WEAK_PROLONGATION</td><td></td></tr>
+
+<tr><td>assessProlongationalType</td>
+<td>A beat represents a progression of another.</td>
+<td>PROGRESSION</td><td></td></tr>
+
+<tr><td>assessProlongationalType</td>
+<td>A beat represents a progression of another (where beat refers to an interval).</td>
+<td>PROGRESSION</td><td></td></tr>
+
+<tr><td>assessPitchStability</td>
+<td>Two events which are from same diatonic collection</td>
+<td>1.0</td><td></td></tr>
+
+<tr><td>assessPitchStability</td>
+<td>Two events which are not from same diatonic collection</td>
+<td>0.0</td><td></td></tr>
+
+
+  
+  </table>
+  
+  <br />
+  
+  <h2 id="rtest">RatingsGenerator Class:</h2>
+
+<table style="width:100%;">
+  <tr>
+    <th>Method Name:</th>
+    <th>Testing For:</th>
+    <th>Expected Rating:</th>
+    <th>Extra Notes:</th>
+  </tr>
+  
+<tr><td>ObtainMetricalRating</td>
+<td>Weak metrical fit</td>
+<td>less than 0.5</td>
+<td>Longer durations of AttackEvents on weak beats, and short durations on strong beats</td></tr>
+<tr><td>ObtainTimeSpanReductionRating()</td>
+<td>Strong example</td>
+<td>greater than 0.5</td>
+<td>Hierarchy promoting high TSPR2a,b and TSPR3a ratings</td></tr>
+<tr><td>ObtainTimeSpanReductionRating()</td>
+<td>Weak example</td>
+<td>less than 0.5</td>
+<td>Violating TSPR2a,b and TSPR3a</td></tr>
+<tr><td>ObtainProlongationalReductionRating()</td>
+<td>Strong example</td>
+<td>greater than 0.5</td>
+<td>Hierarchy promoting strong PRPR3 rating. (Strong stability of each note in relation to the final cadence note)</td></tr>
+<tr><td>ObtainProlongationalReductionRating()</td>
+<td>Weak example</td>
+<td>less than 0.5</td>
+<td>Hierarchy violating strong PRPR3 rating. (Weak stability of each note in relation to the final cadence note)</td></tr>
+<tr><td>ObtainProlongationalReductionRating()</td>
+<td>Strong example</td>
+<td>greater than 0.5</td>
+<td>Strong example of a border note at the end of a group (in accordance with GPR2 and GPR3).</td></tr>
+<tr><td>ObtainProlongationalReductionRating()</td>
+<td>Weak example</td>
+<td>less than 0.5</td>
+<td>Weak example of a border note at the end of a group (in accordance with GPR2 and GPR3).</td></tr>
+<tr><td>ObtainCadenceRating</td>
+<td>Strong example</td>
+<td>1.0</td>
+<td>An example of a cadence of two notes. dominant to tonic matching the CadencedTimeSpanReductionBranch.</td></tr>
+<tr><td>ObtainCadenceRating</td>
+<td>Strong example</td>
+<td>1.0</td>
+<td>An example of a cadence of two notes tonic to dominant matching the CadencedTimeSpanReductionBranch.</td></tr>
+<tr><td>ObtainCadenceRating</td>
+<td>Weak example</td>
+<td>0.0</td>
+<td>Two notes of a CadencedTimeSpanReductionBranch which do not form a cadence of either tonic to dominant, or dominant to tonic.</td></tr>
+
+  
+  </table>
+
+</body>
+</html>

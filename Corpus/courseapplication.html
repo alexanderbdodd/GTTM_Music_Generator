@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>How the Music Generator Program makes use of Course Related Concepts</h1>
+<p>This project has been undertaken as part of a MSc Computer Science Conversion course. In this document I will give an overview as to how I have made use of the skills I have 
+developed throughout the course.</p>
+
+<ol>
+<li><h2>Use of Recursion</h2>
+<p>Recursion was a programming technique that I learnt as part of the Logic and Logic Programming course in the second semester, and I have used the technique several times 
+in the development of my program. This technique lets the program run sequentially through all possible combinations of certain elements, and has been particularly important in 
+constructing what I term 'pitch-chains', which are candidate chains of pitches which are then assessed as to their suitability in fitting a particular grammar. Recursion was used to run 
+through all possible pitches in each position of the chain, such that all possible combinations were assessed.</p>
+</li>
+<li>
+<h2>Use of Java Swing and Java2D</h2>
+<p>Java Swing and Java2D were taught as part of the Advanced Java course in the first semester. I have made use of these APIs to develop the <a href="grammarillustrator.html">GrammarIllustrator module</a> 
+which is used to create visual representations of grammar structures.</p>
+</li>
+
+<li><h2>Use of the Singleton Design Patterns</h2>
+<p>Coding design patterns were covered as part of the Advanced Java course, and I have made use of a the singleton design pattern within various classes to reduce the need to create unncessary multiple instances of objects.
+This pattern is particularly used in the GTTM_Analyser modules.</p></li>
+
+<li><h2>Unit Testing</h2>
+<p>Unit testing was covered as part of the Software Engineering course and I have made use of unit tests to check that my classes behave in the expected way.</p>
+</li>
+
+<li>
+<h2>Use of Polymorphism</h2>
+<p>Polymorphism was covered in the Advanced Java module, and its use can be seen in the way objects extending the Event class are used, as well as the classes extending the Key class. </p>
+</li>
+
+<li><h2>Encapsulation</h2>
+<p>This was taught as part of the Advanced Java module. The program is written in object-oriented code and has many classes that are designed to encapsulate one musical element. For instance,
+ and instance of the AttackEvent class encapsulates details about one pitch and its duration, and an instance of ProlongationalBranch encapsulates details of one single branch of a prolongational reduction.</p>
+</li>
+
+<li><h2>Use of Exception classes</h2>
+<p>The throwing of Exceptions was taught as part of the Advanced Java course and have been used to indicate errors in such things as grammar construction or analysis errors.</p>
+</h2>
+</li>
+
+ 
+ </ol>
+
+</body>
+</html>

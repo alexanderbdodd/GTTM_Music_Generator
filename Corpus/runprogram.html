@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+<h1>Running the Program</h1>
+<p>This document provides an overview of running the program.</p>
+
+<p>The program has been coded using the JAVA language and requires JRE 7 or higher to run. At present there is no front-end GUI. </p>
+<p>The program comes as a NetBeans project and can be opened and run using the NetBeans IDE.</p>
+
+<h2>Generating Musical Pairs</h2>
+
+<ol><li>
+To run the program, the main method of the Main class (located in the default package) should be run. This will make the program generate two pieces of music which are based on one grammar.
+</li>
+<li>Stage A. The program will start a process of generating a grammar structure and then attempt to find a solution to the grammar. If no solution is found another grammar structure is generated.</li>
+<li>Stage B. When the program finds a solution to a grammar structure, it will report this to the operator. A visual representation of the grammar is displayed. (<a href="diagrams/grammar-illustration.png">Click here for an example grammar illustration output.</a>)</li>
+<li>Stage C. Details about the state of the system that generated the program is logged for future reference.</li>
+<li>Stage D. The ratings generator is used to generate ratings concerning how well the solution fits the grammar that was used to construct it. These are reported to the user.</li>
+<li>Stage E. The program plays the generated solution and saves the solution as a .midi file. <p>The files are given the following naming format:</p>
+<p><tt>year-month-day-hours-minutes-seconds-overallrating.midi (yyyy-mm-dd-hh-mm-ss-overallrating.midi)</tt></p></li>
+</ol>
+
+<h3>Output Illustration</h3>
+<p>This image shows the typical output of the system:</p>
+<img src="diagrams/outputillustration.png"></img>
+
+<h2>Generating a Single Musical Fragment</h2>
+
+<p>The program can be adjusted to generate a musical fragment, rather than a pair of musical fragments. In generating a musical fragment the program will pick a solution
+at random from the list of solutions rather than picking the highest rated and lowest rated solutions.</p>
+
+<p>In order to generate one musical fragment, the main method of the Main class needs to be adjusted.</p>
+<p>At present, the main method looks like this:</p>
+<img src="diagrams/before-main-code.png"></img>
+<p>This code needs to be adjusted by commenting out the 'generateMusicPairs()' method and uncommenting the 'generateMusicFragment()' method. The code
+should look like this after editing:</p>
+
+<img src="diagrams/after-main-code.png"></img>
+
+<p>The program can be run as before. In this case, the program will not save the solution as a .midi file.</p>
+
+</body>
+</html>

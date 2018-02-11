@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+<h1>Program Weightings System</h1>
+<p>The music generator makes use of the GTTMAnalyser module to help it generate musical fragments. The GTTMAnalyser provides a rating system which is 
+used to indicate how well fitting potential music solutions are to a given grammar structure. The ratings system has been further expanded to include
+ a weightings system which can increase of decrase the impact of the ratings given by the GTTMAnalyser module. This reflects the GTTM theory suggestion that
+ <tt>'In order to make the theory fully predictive, it might be desirable to assign each rule a numerical degree of strength, and to assign various situations a degree of strength as evidence for particular rules.'</tt>
+ </p>
+ 
+ <p>At this stage the weightings system hasn't been properly formalised or assessed. The GTTM theory isn't clear on which preference rules may be assigned higher ratings and to
+  what degree their ratings should be preferred. Research into the best balance for the weightings could be a future project for the program.</p>
+  
+ <h2>Implementation</h2>
+
+<p>The weightings system has been implemented by including public static double variables to the top of each analyser module class. These are used to create 
+weighted averages when constructing a rating for use by the music generator.</p>
+
+<img src="diagrams/weightings-example.png">An example of the weightings fields for the GroupingStructureAnalyser class</img>
+
+
+<p>Here is an overview of all the weightings fields that have been implemented:</p>
+
+<h3>GroupingStructureAnalyser Weightings</h3>
+<ol><li>
+<b>GPR3A_WEIGHT</b><p>Used to weight how strongly the <a href="gttmrules.html#gpr3a">GPR3A rule</a> should be considered when the assessGPR3() method is called.</p>
+</li>
+<li><b>GPR3B_WEIGHT</b><p>Used to weight how strongly the <a href="gttmrules.html#gpr3b">GPR3B rule</a> should be considered when the assessGPR3() method is called.</p>
+</li>
+<li><b>GPR3C_WEIGHT</b><p>Used to weight how strongly the <a href="gttmrules.html#gpr3c">GPR3C rule</a> should be considered when the assessGPR3() method is called.</p>
+</li>
+<li><b>GPR3D_WEIGHT</b><p>Used to weight how strongly the <a href="gttmrules.html#gpr3d">GPR3D rule</a> should be considered when the assessGPR3() method is called.</p>
+</li>
+
+<li><b>GPR2a_WEIGHT</b><p>Used to weight how strongly the <a href="gttmrules.html#gpr2a">GPR2A rule</a> should be considered when the assessGPR2() method is called.</p>
+</li>
+<li><b>GPR2b_WEIGHT</b><p>Used to weight how strongly the <a href="gttmrules.html#gpr2b">GPR2B rule</a> should be considered when the assessGPR2() method is called.</p>
+</li>
+
+<li><b>GPR2_WEIGHT</b><p>Used to weight how strongly the <a href="gttmrules.html#gpr2">GPR2 rule</a> should be considered when the assessGPR4() method is called.</p>
+</li>
+<li><b>GPR3_WEIGHT</b><p>Used to weight how strongly the <a href="gttmrules.html#gpr3">GPR3 rule</a> should be considered when the assessGPR3() method is called.</p>
+</li>
+
+</ol>
+
+<h3>MetricalStructureAnalyser Weightings</h3>
+<ol><li><b>MPR5A_WEIGHT</b><p>Used to weight how strongly the <a href="gttmrules.html#mpr5a">MPR5a rule</a> should be considered when the assessMPR5() method is called.</p>
+</li>
+<li><b>MPR5B_WEIGHT</b><p>Used to weight how strongly the <a href="gttmrules.html#mpr5b">MPR5b rule</a> should be considered when the assessMPR5() method is called.</p>
+</li>
+<li><b>MPR5C_WEIGHT</b><p>Used to weight how strongly the <a href="gttmrules.html#mpr5c">MPR5c rule</a> should be considered when the assessMPR5() method is called.</p>
+</li>
+<li><b>MPR5D_WEIGHT</b><p>Used to weight how strongly the <a href="gttmrules.html#mpr5d">MPR5d rule</a> should be considered when the assessMPR5() method is called.</p>
+</li>
+<li><b>MPR5E_WEIGHT</b><p>Used to weight how strongly the <a href="gttmrules.html#mpr5e">MPR5e rule</a> should be considered when the assessMPR5() method is called.</p>
+</li>
+<li><b>MPR5F_WEIGHT</b><p>Used to weight how strongly the <a href="gttmrules.html#mpr5f">MPR5f rule</a> should be considered when the assessMPR5() method is called.</p>
+</li>
+<li><b>MPR5_WEIGHT</b><p>Used to weight how strongly the <a href="gttmrules.html#mpr5">MPR5 rule</a> should be weighted. Currently unused.</p>
+</ol> 
+
+<h3>TimeSpanReductionAnalyser Weightings</h3>
+<ol>
+<li>
+<b>CONSONANCE_WEIGHT</b><p>Used to weight how strongly the <a href="gttmrules.html#tspr2a">TSPR2a rule</a> should be considered when the assessTSPR2() method is called.</p>
+</li>
+<li>
+<b>TONIC_RELATION_WEIGHT</b><p>Used to weight how strongly the <a href="gttmrules.html#tspr2b">TSPR2b rule</a> should be considered when the assessTSPR2() method is called.</p>
+</li>
+<li>
+<b>TSPR2_WEIGHT</b><p>Used to weight how strongly the <a href="gttmrules.html#tspr2">TSPR2 rule</a> should be considered when the getTSPR2andTSPR3() method is called.</p>
+</li>
+<li>
+<b>TSPR3_WEIGHT</b><p>Used to weight how strongly the <a href="gttmrules.html#tspr2">TSPR2 rule</a> should be considered when the getTSPR2andTSPR3() method is called.</p>
+</li>
+</ol>
+
+<h3>ProlongationalReductionAnalyser Weightings</h3>
+
+<ol>
+<li>
+<b>BRANCHING_STABILITY_WEIGHT</b><p>Used to weight how strongly the <a href="gttmrules.html#branchingcondition">Branching Condition rule</a> should be considered when the assessPRPR3() method is called.</p>
+</li>
+<li>
+<b>MELODIC_STABILITY_A_WEIGHT</b><p>Used to weight how strongly the <a href="gttmrules.html#melodicconditiona">Melodic Condition A rule</a> should be considered when the assessPRPR3() method is called.</p>
+</li>
+<li>
+<b>MELODIC_STABILITY_B_WEIGHT</b><p>Used to weight how strongly the <a href="gttmrules.html#melodicconditionb">Melodic Condition B rule</a> should be considered when the assessPRPR3() method is called.</p>
+</li>
+<li>
+<b>PITCH_STABILITY_WEIGHT</b><p>Used to weight how strongly the <a href="gttmrules.html#pitchcondition">Pitch Condition a rule</a> should be considered when the assessPRPR3() method is called.</p>
+</li>
+<li>
+<b>HARMONIC_STABILITY_A_WEIGHT</b><p>Used to weight how strongly the <a href="gttmrules.html#harmonicconditiona">Harmonic Condition A rule</a> should be considered when the assessPRPR3() method is called.</p>
+</li>
+<li>
+<b>HARMONIC_STABILITY_B_WEIGHT</b><p>Used to weight how strongly the <a href="gttmrules.html#harmonicconditionb">Harmonic Condition B rule</a> should be considered when the assessPRPR3() method is called.</p>
+</li>
+</ol>
+
+
+</body>
+</html>

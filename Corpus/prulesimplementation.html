@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+
+<h1>How the Preference Rules are applied within the Music Generator:</h1>
+
+
+<p><b>Contents:</b>
+<ul><li><a href="#grules">Grouping Structure Rules</a></li>
+
+<li><a href="#mrules">Metrical Rules</a></li>
+
+<li><a href="#trules">Time-Span Reduction Rules</a></li>
+
+<li><a href="#prules">Prolongational Reduction Rules</a></li></ul></p>
+
+
+
+
+<p>The GTTM preference rules are used to ascertain the grammar structures which most preferable fit human experiences in music. The preference rules are an important part of the Music Generator program as they are used to decide which pitch and rhythm combination best fit the grammatical structure that the piece of music is meant to be based on. 
+
+An overview of the preference rules is given in the section on GTTM rules. Not all preference rules have been applied.
+ This document gives an overview of which preference rules have been implemented in the program, followed by rules which haven't been implemented and a justification.
+ 
+</p>
+
+<h2 id="grules">Grouping Structure Preference Rules:</h2>
+<br />
+<b><a href="gttmrules.html#gpr1">GPR 1:</a></b> This preference rule states that, in general, groups should contain more than a single event. This rule is adhered to implicitly by not allowing grammatical structures to be formed with groups only containing one allocated pitch beat. Therefore, in this implementation the rule is assumed to be stating that a group must have at least more than one pitch beat allocated within its beat span for it to be a legitimate group.
+<br /><br />
+<b><a href="gttmrules.html#gpr2">GPR 2:</a></b> This rule is implemented within the GroupingStructureAnalyser class as part of the analysis module. The rule is subdivided into two parts: GPR 2a and GPR 2b. Each part has its own separate method within the analyser module and can be used to ascertain how preferable a given pitch constitutes a boundary of a group within the context of a span of four pitches. A general GPR 2 method is also provided which performs analysis of both GPR2a and GPR2b and returns a weighted average.
+<br /><br />
+<b><a href="gttmrules.html#gpr3">GPR 3:</a></b> This rule is implemented within the GroupingStructureAnalyser class as part of the analysis module. The rule is subdivided into four parts: GPR 3a, GPR 3b, GPR 3c, GPR 3d. Each part has its own separate method within the analyser module and can be used to ascertain how preferable a given pitch constitutes a boundary of a group within the context of a span of four pitches. A general GPR 3 method is also provided which performs analysis of GPR3a, GPR3b, GPR3c, and GPR3d and returns a weighted average.
+<br /><br />
+<b><a href="gttmrules.html#gpr4">GPR 4:</a></b> This rule is implemented within the GroupingStructureAnalyser class as part of the analysis module. This rule gathers ratings fromthe GPR 3 and GPR 2 methods and returns their weighted average. The weighted average reflects the suggestion in the GTTm that 'in general, all cases of GPR 3 ... appear to have weaker effects that GPR 2'. The weightings may require adjustment in the future.
+<br /><br />
+<b><a href="gttmrules.html#gpr5">GPR 5:</a></b> This rule is implemented as implicitly within the PhraseGrammarConstructor class. In constructing a grammar, the class ensures that groups are of relatively equal length.
+<br /><br />
+<h3>Unimplemented Grouping Structure Preference Rules:</h3>
+
+<b id="gpr6"><a href="gttmrules.html#gpr6">GPR 6:</a></b> This rule has not been implemented for two reasons. 1. the notion of parallelism within pieces of music is not clearly explained within the GTTM theory. The authors themselves raise the difficulty of the problem as being 'how different can [two passages of music] be before they are judged as no longer parallel?' 2. The issue of parallelism applied to larger pieces of music where several phrases might be considered parallel. As the MusicGenerator is only at this time interested in developing one phrase at a time and is not yet equipped to develop longer passages, the issue of parallelism is not yet relevant to the generation of music.
+<br /><br />
+<b><a href="gttmrules.html#gpr7">GPR 7:</a></b> This rule would have to be implemented within the PhraseGrammarConstructor class, but it is difficult to work out how grouping structures could be organised so as to promote both prolongational and time-span reduction stabilities. The concept is not clearly defined enough in the theory. Instead, if a grouping structure undermines the branching structures, the generator will be unable to find suitable matching pieces of music and a new grammar will have to be generated.
+<br /><br />
+
+<h2 id="mrules">Metrical Preference Rules:</h2>
+<br />
+<b><a href="gttmrules.html#mpr3">MPR 3:</a></b> This is implemented as part of the grammar construction phase. In the construction of a grammar, beats are allocated as pitch beats, and preference is given to relatively stronger beats.
+<br /><br />
+<b><a href="gttmrules.html#mpr5">MPR 5:</a></b>  This is implemented as part of the MetricalStructureAnalyser class, which is used to provide a rating as to how well a given piece of music fits a grammar's metrical structure. The analysis is broken up into five subparts: MPR 5a, MPR 5b, MPR 5c, MPR 5d and MPR 5e. MPR 5f is not yet implemented. MPR 5 collects the ratings value for each of these subparts and returns a weighted average. Each subpart works by analysing the strongest beat value against the value of each beat within the metrical structure, and comparing the duration of a given AttackEvent against a context of a series of Event objects (taking into account such things as articulations, slurring, and dynamic changes).
+<br /><br />
+<b><a href="gttmrules.html#mpr7">MPR 7: </a></b> This is implicitly implemented as part of the grammar construction phase. Cadence beats are allocated by preferably assigning the cadence end and start points to relatively strong metrical beats.
+<br /><br />
+<b><a href="gttmrules.html#mpr10">MPR 10:</a></b>  This is implicitly implemented as part of the grammar construction phase. Metrical structures are assigned such that each level represents a binary pattern of strong/weak beats. 
+<br /><br />
+<h3>Unimplemented Metrical Preference Rules:</h3>
+<br />
+<b><a href="gttmrules.html#mpr1">MPR 1:</a></b> This rule has not been implemented for two reasons. 1. the ambiguity of the concept parallelism, as referenced in the explanation for not implementing GPR 6. 2. The rule is aimed as larger structure pieces (i.e. multi-phrase pieces), whereas the Music Generator is only aimed as creating a one phrase piece of music.
+<br /><br />
+<b><a href="gttmrules.html#mpr2">MPR 2:</a></b> This rule has not been implemented yet due to time limitations, but should be implemented as part of the grammar construction phase.
+<br /><br />
+<b><a href="gttmrules.html#mpr4">MPR 4:</a></b> This rule is concerned with analysing pitch events which have some form of stress on them.The Music Generator has not yet been developed to assign stresses to beats, and so this rule is not yet relevant to the program (because all beats are unstressed, no useful analysis could be performed). This rule should be implemented as soon as wider support for stresses and other patterns of articulation is implemented within the program.
+<br /><br />
+<b><a href="gttmrules.html#mpr6">MPR 6:</a></b> This rule is aimed as pieces of music which are not monophonic. As the Music Generator is only currently capable of producing monophonic pieces of music, this rule cannot be meaningfully applied. In the future, this rule should be implemented within the GTTM analyser module for use in constructing homophonic and polyphonic music.
+<br /><br />
+<b><a href="gttmrules.html#mpr8">MPR 8: </a></b> This rule relies on the concept of suspension and should be implemented as part of the MetricalStructure class in the GTTM_Analyser module. Time constraints have meant that I haven't been able to implement this rule properly yet.
+<br /><br />
+<b><a href="gttmrules.html#mpr9">MPR 9:</a></b> Time constraints and ambiguity over the concept of conflict within the time-span reduction has meant that this rule has not yet been implemented. This rule should be reviewed in future development to assess how it might be implemented.
+<br />
+
+<h2 id="trules">Time-Span Reduction Preference Rules:</h2>
+<br />
+<b><a href="gttmrules.html#tspr1">TSPR 1: </a></b>This is implemented as part of the grammar construction stage. Each grammar is assigned a cadence branch as its top branch, and the cadence branch is matched onto beats of relatively strong strength.
+<br /><br />
+<b><a href="gttmrules.html#tspr2">TSPR 2: </a></b>This is implemented as part of the TimeSpanReductionAnalyser class. The rule is a combination of two related rules, TSPR 2a and TSPR 2b. TSPR 2a is used to assess the consonance between a parent pitch event and a child pitch event by assessing the interval between them. TSPR 2b assessed how closely related the two pitch events are to the tonic. If the child event has a higher relation, then a lower rating is returned.
+<br /><br />
+<b><a href="gttmrules.html#tspr3a">TSPR 3a: </a></b>This is implemented as part of the TimeSpanReductionAnalyser class. If a parent branch is associated with a pitch beat which is higher in pitch than its child branch's associated pitch beat, then a higher rating is returned. If the parent branch is associated with a lower pitch than its child's, then a lower rating is returned.
+<br /><br />
+<b><a href="gttmrules.html#tspr5">TSPR 5: </a></b>This rule has been implemented in simplified way as part of the grammar construction process. The head branch of the time-span reduction branch is associated with relatively strong beats. It is unclear if this is a sufficient implementation and further work will need to be done to implement this as part of the TimeSpanReductionAnalyser class for help in music generation.
+<br /><br />
+<b><a href="gttmrules.html#tspr7">TSPR 7: </a></b>This rule is implemented in a basic way as part of the grammar construction phase by always assigning two pitches as cadence points and associating them with a CadencedTimeSpanReductionBranch, which is then used by the music generator to identify which notes should form a cadence. In the future, this rule will need to be implemented more explicitly for use in deriving grammars from pre-existing pieces of music.
+<br /><br />
+<b><a href="gttmrules.html#tspr8">TSPR 8: </a></b>This rule is implemented as part of the grammar construction phase. A pitch beat is near to the beginning of the metrical structure is allocated as being the 'structural beginning' and is assigned as the highest level child of the top time-span reduction (the cadence) branch.
+<br /><br />
+<b><a href="gttmrules.html#tspr9">TSPR 9: </a></b>This is implemented as part of the grammar construction phase in conjunction with the implementation of TSPR 8. The CadencedTimeSpanReductionBranch that maps onto the pitch beats near the end of the piece is allocated as the top branch, and the structural beginning is allocated as its highest level child.
+<br /><br />
+
+
+<h3>Unimplemented Time-Span Reduction Preference Rules:</h2><br />
+
+<b><a href="gttmrules.html#tspr3b">TSPR 3b:</a></b> This is a rule aimed at analysing homophonic and polyphonic melody. At present the program is only capable of producing monophonic melody, and as such this rule is not needed within the generation process. When homophony/polyphony is implented in the program, this rule will need to be implemented and used in order to construct the base notes of a melody.
+<br /><br />
+<b><a href="gttmrules.html#tspr4">TSPR 4:</a></b> This rule is not implemented for two reasons: 1. it is only applicable to larger scale pieces of music (i.e., pieces of music with more than one phrase). 2. it relies on an ambiguous definition of parallism as referenced in the explanation for GPR 6.
+<br /><br />
+
+<b><a href="gttmrules.html#tspr6"></a></b>TSPR 6: This rule states that time-span reductions should be allocated such that they promote more stable prolongational structures. I was unsure what stability meant at the preference rules implementation stage and whether this should be implemented as part of the grammar construction phase or as part of the GTTM_Analyser module. This should be considered for future development and expansion of the program.
+
+<br /><br />
+
+<h2 id="prules">Prolongational Reduction Preference Rules:</h2>
+<br />
+<b><a href="gttmrules.html#prpr1">PRPR 1: </a></b>This has been implemented in a naive way in the grammar constructor by associating the top prolongational branch with the same pitch beat as that of the top time-span reduction branch. 
+<br /><br />
+<b><a href="gttmrules.html#prpr3">PRPR 3:</a></b> This rule is implemented as part of the ProlongationalReductionAnalyser class and is used to assess the stability of a given child AttackEvent with a given parent AttackEvent. The parent AttackEvent is the prolongational end point of a group. Child AttackEvents with lower ratings indicate greater distance between its branch and the parent's branch. Higher ratings indicate a close distance between the two branches.
+<br /><br />
+The rule depends on assessing the stability between the two pitch events. The stability rules are implemented in four separate methods which are used to associate branching, pitch collection, melodic, and harmonic conditions of the two AttackEvents. A weighted average is returned reflecting potential preferences between the stability conditions.
+<br /><br />
+<b><a href="gttmrules.html#prpr6">PRPR 6:</a></b> This rule is implemented as part of the grammar construction phase and is used to generate a grammatical structure that describes a phrase of music. Each constructed grammar is given the following structure:
+<br /><br />
+A top prolongational branch which is associated with the cadence end point of the time span reduction top branch.
+<br />
+A prolongational beginning which is always the first allocated pitch beat. This is allocated as a child of the top prolongational branch and is given either a weak or strong prolongation branching type.
+<br />
+A right branch from the prolongational beginning of branching type progression.
+<br />
+A left branch from the the branch associated with the cadence start beat of branching type progression.
+<br />
+
+
+
+<h3>Unimplemented Prolongational Reduction Preference Rules:</h3>
+<br />
+<b><a href="gttmrules.html#prpr2">PRPR 2:</a></b> This has not been implemented due to time constraints. This rule would be best implemented as part of the grammar construction phase.
+<br /><br />
+<b><a href="gttmrules.html#prpr4">PRPR 4:</a></b> This rule relies on the concept of a pitch being an elaboration of another pitch, and at the time of implementation I was unsure how this concept might be implemented. Due to time constraints I haven't been able to research how this might be implemented, but I suspect it should be implemented as part of the GTTM_Analyser module.
+<br /><br />
+<b><a href="gttmrules.html#prpr5">PRPR 5:</a></b>  This has not been implemented for two reasons. 1. the ambiguity concerning the use of the concept parallelism, as referenced in the overview for GPR 6. 2. this rule is aimed as pieces of greater than one phrase in length.
+<br />
+
+
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+Fragment 1 : 0.696
+Fragment 2 : 0.6667
+
+
+-----------------------------------
+
+
+Grammar saved as: Grammars/grammar-2015-08-03-01-20-37.ser
+Prolongational Strictness: true
+Time-span reduction strictness: true
+Prolongational branching strictness: false
+Recursion limit: true
+Time span reduction checking: true
+Cadence checking: true
+
+
+Prolongational analysis values: 
+
+Branching Stability Weight: 1.0
+Harmonic Stability A Weight: 1.0
+Harmonic Stability B Weight: 1.0
+Melodic Stability A Weight: 1.5
+Melodic Stability B Weight: 1.0
+Pitch Stability Weight: 1.0
+ 
+
+Time-Span Reduction analysis values: 
+
+TSPR2 Weight: 1.0
+TSPR3 Weight: 0.5
+Consonance Weight: 0.5
+Tonic Relation Weight: 1.0
+ 
+
+Grouping Structure Analysis Values: 
+
+GPR2A Weight: 1.0
+GPR2B Weight: 1.0
+GPR2 Weight: 2.0
+GPR3A Weight: 3.0
+GPR3B Weight: 0.5
+GPR3C Weight: 0.5
+GPR3D Weight: 3.0
+GPR3 Weight: 1.0
+ 
+
+
+Key: GS NATURALMINOR
+
+
+
+The rating for this piece is: 0.6667269622738372
+Metrical Rating: 0.4453125
+Time Span Reduction Rating: 0.8215277777777779
+Prolongational Reduction Rating: 0.6313175713175713
+Grouping Structure Rating: 0.76875
+Cadence Rating: 1.0
+Grammar no 2
+
+Saved as: 2015-08-03-01-20-37-0.6667269622738372.midi
+
+-----------------------------------
+
+Key: GS NATURALMINOR
+
+
+
+The rating for this piece is: 0.6962213307525806
+Metrical Rating: 0.453125
+Time Span Reduction Rating: 0.8472222222222222
+Prolongational Reduction Rating: 0.7107881007881007
+Grouping Structure Rating: 0.7737499999999999
+Cadence Rating: 1.0
+Grammar no 2
+
+Saved as: 2015-08-03-01-20-37-0.6962213307525806.midi
+
+-----------------------------------

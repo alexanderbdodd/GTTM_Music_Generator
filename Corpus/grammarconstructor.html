@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<style>
+
+
+body {width: 80%}
+
+ul {list-style-type:none; padding: 5px; margin: 10px}
+
+p, ul, li {font-family: Arial, Helvetica, sans-serif;font-size: 15px;}
+
+</style>
+
+<h1>The Grammar Constructor Overview:</h2>
+
+<p>The Grammar Constructor module is used to construct GTTM style grammar structures which are used as inputs to the Music_Generator module. </p>
+
+<p>At the time of writing, the Grammar_Constructor module includes two classes:</p>
+
+<ol>
+<li>the GrammarUtils class, which provides general methods for use in constructing grammar objects.</li>
+
+<li>the PhraseGrammarConstructor, which is used to construct grammar structures that denote a single musical phrase.</li></ol>
+
+
+<h2>The PhraseGrammarConstructor:</h2>
+
+<p>A grammar denoting a phrase is constructed in the following way:</p>
+<ol>
+<li>a metrical structure is established of a length between 24 - 40 beats, with a variable maximum beat strength between 3 and 6. The metrical structure follows the MWFR 3 rules which states that at each metrical level, strong beats are spaced eiher two or three beats apart. It further follows MWFR 4, which states that each metrical level must consist of equally spaced beats.
+</li><br/>
+<li> a number of beats which mark the inception of pitch events are established. The number of pitch events is always greater than 7, and are on average half the size of the metrical structure. 
+</li>
+
+<p>Pitch events are established in the following way:</p>
+
+	<li><ol><li> the number of pitch beats is calculated.</li>
+	<li> the metrical structure is consulted to establish which beats constitute the best candidates 	for being allocated as pitch beats. This is established according to the following rule:
+</li>
+		<li> beats which are of a relatively high level are considered as higher potential 			candidates for marking pitch inceptions.
+	
+		(in the future more rules should may be implemented to help improve the pitch beat 			allocation process)
+</li></ol></li><br/>
+
+<li>the grouping structure is mapped onto the metrical structure. A grouping structure may be of many levels, but the most basic grouping structure consists of two base groups which span contiguous sections of the metrical structure, and a HighLevelGroup which spans the two BaseGroup objects.
+</li><br/><br/><br/>
+
+<div class="img">
+  
+    <img src="diagrams/groupingstructure.png" alt="Grouping Structure">
+  </a>
+  <div class="desc">Figure 1: the simplest possible grouping structure</div>
+</div><br/><br/><br/>
+
+<div class="img">
+ 
+    <img src="diagrams/groupingstructure2.png" alt="Complex Grouping Structure">
+  </a>
+  <div class="desc">Figure 2: a more complex grouping structure</div>
+</div><br/>
+
+<li> The TimeSpanReduction branches are allocated. The PhraseConstructor always includes one cadence branch marking two pitch beats near the end of the piece and a structural beginning as a child of the cadence branch. (At the present time, the pitch beat in the position nearest to the end is always allocated as the cadence end beat). Branches are then randomly fitted inbetween these top level branches to produce a simple time span reduction structure. 
+</li><br/>
+
+<br/><br/>
+<div class="img">
+ 
+    <img src="diagrams/timespanreduction.png" alt="Example Time Span Reduction Structure">
+  </a>
+  <div class="desc">Figure 3: a time span reduction allocated to 8 pitch beats</div>
+</div><br/>
+
+<li>A prolongational reduction tree is allocated which meets the normative prolongational structure:
+
+<p>a.) a prolongational beginning branch is established.</p>
+<p>b.) a prolongational ending branch is established which is associated with the end cadence beat</p>
+<p>c.) a right branching prolongation is established from the prolongational beginning</p>
+<p>d.) a left branching progression is associated with a branch matching the starting cadence beat.</p>
+
+<p>The branch matching the last cadence beat (b) is established as the top prolongational branch, and the prolongational beginning is established as its most high level child.
+</p>
+<p>Branches are then fitted inbetween these established branches so that the prolongational reduction maps all of the allocated pitch beats.
+</p>
+</li><br/><br/>
+
+
+<div class="img">
+ 
+    <img src="diagrams/prolongationalreduction.png" alt="Example Prolongational Reduction Structure">
+  </a>
+  <div class="desc">Figure 4: a prolongational reduction mapping 8 pitch beats</div>
+</div><br/>
+
+<li>A prolongational group is established. For the purposes of a phrase grammar, a prolongational group matches the whole metrical structure of the grammar. In larger pieces, the prolongational grouping will be manifold.
+</li><br/>
+<li>Finally, a GrammarContainer object is created using all the top level grammar structure elements as initialising parameters and returned from the main method.
+</li>
+</ol>
+
+
+</body>
+
+</html>
