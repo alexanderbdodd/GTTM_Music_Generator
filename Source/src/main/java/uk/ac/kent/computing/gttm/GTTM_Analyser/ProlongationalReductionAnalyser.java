@@ -33,8 +33,8 @@ public class ProlongationalReductionAnalyser {
 
     //weightings for the different stability types
     public final static double BRANCHING_STABILITY_WEIGHT = 1.0;
-    public final static double MELODIC_STABILITY_A_WEIGHT = 1.5;
-    public final static double MELODIC_STABILITY_B_WEIGHT = 1.0;
+    public final static double MELODIC_STABILITY_A_WEIGHT = 2.5;
+    public final static double MELODIC_STABILITY_B_WEIGHT = 2.0;
     public final static double PITCH_STABILITY_WEIGHT = 1.0;
     public final static double HARMONIC_STABILITY_A_WEIGHT = 1.0;
     public final static double HARMONIC_STABILITY_B_WEIGHT = 1.0;

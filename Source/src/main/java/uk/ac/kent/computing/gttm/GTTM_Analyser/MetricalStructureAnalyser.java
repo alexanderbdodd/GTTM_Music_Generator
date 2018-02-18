@@ -27,10 +27,10 @@ import uk.ac.kent.computing.gttm.Grammar_Elements.ReductionBranches.TimeSpanRedu
  */
 public class MetricalStructureAnalyser {
 
-    private final static double MPR5A_WEIGHT = 1;
+    private final static double MPR5A_WEIGHT = 3;
     private final static double MPR5B_WEIGHT = 1;
     private final static double MPR5C_WEIGHT = 1;
-    private final static double MPR5D_WEIGHT = 1;
+    private final static double MPR5D_WEIGHT = 2;
     private final static double MPR5E_WEIGHT = 1;
     private final static double MPR5F_WEIGHT = 1;
 

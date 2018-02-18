@@ -33,7 +33,7 @@ public class Main {
 	public static void main(String[] args) {
 
 		// printGrammar();
-		// generateMusicPairs();
+		generateMusicPairs();
 		while (true) {
 			generateMusicFragment();
 		}
@@ -42,6 +42,10 @@ public class Main {
 
 	private static void generateMusicFragment() {
 		EventStream stream = null;
+
+
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Calendar cal = Calendar.getInstance();
 
 		GrammarContainer grammar = null;
 
@@ -66,6 +70,17 @@ public class Main {
 		System.out.println();
         System.out.println();
 		Player.playEventStream(stream);
+		double rating = RatingsGenerator.getInstance().obtainRating(grammar, stream);
+
+		String time = dateFormat.format(cal.getTime());
+		time = time.replace("/", "-");
+		time = time.replace(" ", "-");
+		time = time.replace(":", "-");
+		time = time.concat("-" + rating);
+
+		Logger.getInstance().updateLastMessage("Saved as: " + time + ".midi" + '\n', true);
+
+		Player.writeEventStream(stream, time);
 
         System.out.println();
 
@@ -76,7 +91,7 @@ public class Main {
 
 		Logger.getInstance().setWriteOutFileName("ratings.txt");
 
-		while (count < 10) {
+		while (count < 50) {
 			Map<Double, EventStream> streamMap = null;
 
 			GrammarContainer grammar = null;

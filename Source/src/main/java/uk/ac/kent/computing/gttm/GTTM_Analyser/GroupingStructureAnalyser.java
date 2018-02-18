@@ -25,14 +25,14 @@ public class GroupingStructureAnalyser {
 
     //set of weightings to for performing GPR3 analysis
     public final static double GPR3A_WEIGHT = 3;
-    public final static double GPR3B_WEIGHT = 0.5; //this should be stronger in actuality
+    public final static double GPR3B_WEIGHT = 2; //this should be stronger in actuality
     public final static double GPR3C_WEIGHT = 0.5;
     public final static double GPR3D_WEIGHT = 3;
 
     public final static double GPR2A_WEIGHT = 1;
     public final static double GPR2B_WEIGHT = 1;
 
-    public final static double GPR3_WEIGHT = 1;
+    public final static double GPR3_WEIGHT = 1.3;
     public final static double GPR2_WEIGHT = 2;
 
     private static GroupingStructureAnalyser instance = null;
